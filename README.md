@@ -1,2 +1,2 @@
-# LuminaCritics
-É isso aí
+**Documentação do desenvolvimento:**
+  - [Documentação de requisitos](requisitos.md)
