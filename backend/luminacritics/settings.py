@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'critics',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+import datetime
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': 'luminacriticsdevelopers',
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),  # tempo de expiração.
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),  # tempo de expiração para tokens de atualização.
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
