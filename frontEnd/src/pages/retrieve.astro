@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/formLayout.astro';
+import Card from '../components/Card.astro';
+import FormField from "../components/formField.astro";
+---
+
+<Layout title="Recuperação de senha">
+
+	<script>
+
+		import * as yup from "yup";
+		import AWM from "awesome-notifications";
+
+		function login (event) {
+
+			event.preventDefault ();
+
+			let data = {
+				email : document.querySelector ("#email").value
+			}
+
+			let validation = yup.object ().shape ({
+				email : yup.string().email().required()
+                
+			});
+
+			validation.validate (data).then (() => {
+				console.log ("passou");
+			})
+			.catch (() => {
+				new AWM ().error ("Credenciais inválidas, verifique se seu usuário existe ou se as credenciais estão corretas.");
+			});
+
+		}
+
+		document.getElementById ("button").addEventListener ("click" , login)
+	</script>
+
+	<main>
+		<ul role="list" class="link-card-grid">
+
+			<Card
+				href="/login"
+				title="Recuperação de senha"
+				description="Não se preocupe, basta informar seu email já cadastrado e enviaremos uma notificação na velocidade da luz."
+				hrefText = "Já tem conta ?"
+				submitValue = "Recuperar conta"
+                hrefTwo = "/signup"
+				hrefTwoText = "Não tenho conta"
+			>
+			<FormField
+					type = "email"
+					title = "Email"
+					id = "email"
+			/>
+
+			</Card>
+		</ul>
+	</main>
+</Layout>
