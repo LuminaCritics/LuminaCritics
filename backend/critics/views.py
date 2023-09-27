@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveUpdateAPIView, DestroyAPIView
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import IsAuthenticated
@@ -19,12 +20,17 @@ class UsuarioListView(APIView):
         return Response(serializer.data)
 
 class UsuarioCreateView(APIView):
-    #permission_classes = [IsAuthenticated]
-
     def post(self, request):
         serializer = UsuarioSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            # Codifique a senha antes de salvar o usuário
+            senha = make_password(serializer.validated_data['senha'])
+            user = Usuario(
+                nome=serializer.validated_data['nome'],
+                email=serializer.validated_data['email'],
+                senha=senha,
+            )
+            user.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
