@@ -3,7 +3,7 @@
 ## Introdução
 
 O projeto proposto para ser desenvolvido na turma de desenvolvimento web mobile trata-se de uma plataforma de avaliação de conteúdo áudiovisual assim como o hotten tomatoes ou o my anime list.  
-A idealização do site chamado "LuminaCritics" tem como objetivo criar um site que sja responsivo para que no futuro possa ser tranferido também para dispositivos móveis. O site deve permitir com que usuário comuns façam revisões de conteúdo, salvem os que mais gostarem e possam avaliá-los.
+A idealização do site chamado "LuminaCritics" tem como objetivo criar um site que sja responsivo para que no futuro possa ser transferido também para dispositivos móveis. O site deve permitir com que usuário comuns façam revisões de conteúdo, salvem os que mais gostarem e possam avaliá-los.
 Os métodos e ferramentas que serão utilizados estarão descritos abaixo.
 
 ---
