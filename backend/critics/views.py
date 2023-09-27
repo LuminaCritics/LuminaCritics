@@ -19,7 +19,7 @@ class UsuarioListView(APIView):
         return Response(serializer.data)
 
 class UsuarioCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = UsuarioSerializer(data=request.data)
