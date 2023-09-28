@@ -6,9 +6,12 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 from django.conf import settings
 from django.shortcuts import render
 from django.core.mail import send_mail
+from django.contrib.auth.models import User
+from copy import deepcopy
 
 from .models import Usuario
 from .serializers import UsuarioSerializer
@@ -25,9 +28,22 @@ class UsuarioCreateView(APIView):
     #permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = UsuarioSerializer(data=request.data)
+        data = request.data
+        password = data.get('senha')
+        data.pop('senha')
+        serializer = UsuarioSerializer(data=data)
         if serializer.is_valid():
+            #print(f'\033[94m {serializer.validated_data} \033[0m]]')
+            fields = deepcopy(serializer.validated_data) 
             serializer.save()
+            user = User.objects.create_user(
+                username = fields['email'],
+                email = fields['email'],
+                first_name = fields['primeiro_nome'],
+                last_name = fields['sobrenome'],
+                password = password
+            )
+            Token.objects.get_or_create(user=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

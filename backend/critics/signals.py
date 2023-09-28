@@ -20,18 +20,9 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
             instance.request.build_absolute_uri(reverse('password_reset:reset-password-confirm')),
             reset_password_token.key)
     }
-    print('------------------------------------------')
-    print(context['current_user'])
-    print(context['username'])
-    print(context['email'])
-    print(context['reset_password_url'])
-    print('------------------------------------------')
 
-    # render email text
     email_html_message = render_to_string('email/password_reset_email.html', context)
-    print(email_html_message)
     email_plaintext_message = render_to_string('email/password_reset_email.txt', context)
-    print(email_plaintext_message)
 
     msg = EmailMultiAlternatives(
         # title:
