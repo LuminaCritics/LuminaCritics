@@ -1,0 +1,21 @@
+<canvas class = "z-0 w-screen h-screen absolute" id = "background"> 
+    <slot />
+</canvas>
+
+<script>
+
+    import Starback from "starback";
+
+    let canvas = document.getElementById ("background");
+
+    let starback = new Starback (canvas , {
+        type : "dot",
+        quantity : 100,
+        direction : 200,
+        backgroundColor : ["#000000"],
+        randomOpacity : true,
+        starColor : ["#ffffff"]
+    });
+
+    starback.generateStar(30)
+</script>

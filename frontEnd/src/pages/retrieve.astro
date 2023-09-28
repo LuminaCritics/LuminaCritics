@@ -2,6 +2,7 @@
 import Layout from '../layouts/formLayout.astro';
 import Card from '../components/Card.astro';
 import FormField from "../components/formField.astro";
+import StardewBackground from '../components/stardewBackground.astro';
 ---
 
 <Layout title="Recuperação de senha">
@@ -37,24 +38,24 @@ import FormField from "../components/formField.astro";
 	</script>
 
 	<main>
-		<ul role="list" class="link-card-grid">
 
-			<Card
-				href="/login"
-				title="Recuperação de senha"
-				description="Não se preocupe, basta informar seu email já cadastrado e enviaremos uma notificação na velocidade da luz."
-				hrefText = "Já tem conta ?"
-				submitValue = "Recuperar conta"
-                hrefTwo = "/signup"
-				hrefTwoText = "Não tenho conta"
-			>
+		<StardewBackground />
+
+		<Card
+			href="/login"
+			title="Recuperação de senha"
+			description="Não se preocupe, basta informar seu email já cadastrado e enviaremos uma notificação na velocidade da luz."
+			hrefText = "Já tem conta ?"
+			submitValue = "Recuperar conta"
+            hrefTwo = "/signup"
+			hrefTwoText = "Não tenho conta"
+		>
 			<FormField
 					type = "email"
 					title = "Email"
 					id = "email"
 			/>
 
-			</Card>
-		</ul>
+		</Card>
 	</main>
 </Layout>

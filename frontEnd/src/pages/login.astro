@@ -2,6 +2,7 @@
 import Layout from '../layouts/formLayout.astro';
 import Card from '../components/Card.astro';
 import FormField from "../components/formField.astro";
+import StardewBackground from '../components/stardewBackground.astro';
 ---
 
 <Layout title="Login">
@@ -38,8 +39,8 @@ import FormField from "../components/formField.astro";
 	</script>
 
 	<main>
-		<ul role="list" class="link-card-grid">
-			<Card
+		<StardewBackground />
+		<Card
 				href="/retrieve"
 				title="Login"
 				description="Aqui você pode desbravar o universo dos filmes, séries, animes e muito mais."
@@ -59,7 +60,7 @@ import FormField from "../components/formField.astro";
 					id = "password"
 			/>
 
-			</Card>
-		</ul>
+		</Card>
 	</main>
+	
 </Layout>

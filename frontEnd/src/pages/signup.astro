@@ -2,6 +2,7 @@
 import Layout from '../layouts/formLayout.astro';
 import Card from '../components/Card.astro';
 import FormField from "../components/formField.astro";
+import StardewBackground from '../components/stardewBackground.astro';
 ---
 
 <Layout title="Cadastro">
@@ -41,33 +42,32 @@ import FormField from "../components/formField.astro";
 	</script>
 
 	<main>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="/login"
-				title="Cadastro"
-				description="Aqui você pode desbravar o universo dos filmes, séries, animes e muito mais. Tudo isso a uma conta de distância."
-				hrefText = "Já tem conta ?"
-				submitValue = "Cadastrar"
-				hrefTwo = ""
-				hrefTwoText = ""
-			>
+		<StardewBackground />
+		<Card
+			href="/login"
+			title="Cadastro"
+			description="Aqui você pode desbravar o universo dos filmes, séries, animes e muito mais. Tudo isso a uma conta de distância."
+			hrefText = "Já tem conta ?"
+			submitValue = "Cadastrar"
+			hrefTwo = ""
+			hrefTwoText = ""
+		>
 			<FormField
-					type = "text"
-					title = "Nome"
-					id = "name"
+				type = "text"
+				title = "Nome"
+				id = "name"
 			/>
 			<FormField
-					type = "password"
-					title = "Senha"
-					id = "password"
+				type = "password"
+				title = "Senha"
+				id = "password"
 			/>
             <FormField
-					type = "email"
-					title = "Email"
-					id = "email"
+				type = "email"
+				title = "Email"
+				id = "email"
 			/>
 
-			</Card>
-		</ul>
+		</Card>
 	</main>
 </Layout>
