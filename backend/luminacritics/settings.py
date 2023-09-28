@@ -103,16 +103,8 @@ WSGI_APPLICATION = 'luminacritics.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'luminacritics',
-#         'USER': 'root',
-#         'PASSWORD': 'P@ssw0rd',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
+
+#CONFIGURACAO DO DATABASE MUDAR NO ARQUIVO ENV
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
