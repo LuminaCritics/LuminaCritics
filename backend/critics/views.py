@@ -6,6 +6,9 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import IsAuthenticated
+from django.conf import settings
+from django.shortcuts import render
+from django.core.mail import send_mail
 
 from .models import Usuario
 from .serializers import UsuarioSerializer
@@ -19,7 +22,7 @@ class UsuarioListView(APIView):
         return Response(serializer.data)
 
 class UsuarioCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = UsuarioSerializer(data=request.data)
@@ -46,3 +49,11 @@ class UsuarioLoginView(TokenObtainPairView):
 class UsuarioLogoutView(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
+
+""" subject = 'Test Email'
+message = 'This is a test email sent from my Django app.'
+from_email = settings.EMAIL_HOST_USER
+recipient_list = ['marcosdyeimison@gmail.com']
+
+send_mail(subject, message, from_email, recipient_list, fail_silently=False) """
+#python3 manage.py sendtestemail --admins

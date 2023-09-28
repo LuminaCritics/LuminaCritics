@@ -1,7 +1,7 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
-from django.db import models
 
 class Usuario(models.Model):
     nome = models.CharField(max_length=255)
