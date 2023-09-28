@@ -65,11 +65,3 @@ class UsuarioLoginView(TokenObtainPairView):
 class UsuarioLogoutView(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
-
-""" subject = 'Test Email'
-message = 'This is a test email sent from my Django app.'
-from_email = settings.EMAIL_HOST_USER
-recipient_list = ['marcosdyeimison@gmail.com']
-
-send_mail(subject, message, from_email, recipient_list, fail_silently=False) """
-#python3 manage.py sendtestemail --admins
