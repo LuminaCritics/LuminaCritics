@@ -1,14 +1,12 @@
 ---
-interface Props {
+import NavigationBar from "./NavigationBar.astro";
 
-}
-
-const { } = Astro.props;
 ---
 
     <div class="header">
-        <img class="logo" src="../../public/lamp-cut.png"/>
+        <img class="site-icon" src="../../public/lamp-cut.png"/>
         <h1 class="header-title">Luminacritcs</h1>  
+        <NavigationBar/>
     </div>
     
     <style>
@@ -28,7 +26,7 @@ const { } = Astro.props;
             font-weight: bolder;
             font-size: larger;
         }
-        .logo {
+        .site-icon {
             width: 3em;
             height: 3rem;
         }
