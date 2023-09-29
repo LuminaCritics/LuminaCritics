@@ -3,23 +3,34 @@ import NavigationBar from "./NavigationBar.astro";
 
 ---
 
-    <div class="header">
-        <img class="site-icon" src="../../public/lamp-cut.png"/>
-        <h1 class="header-title">Luminacritcs</h1>  
+    <header >
+        <div class="logo">
+            <img class="site-icon" src="../../public/lamp-cut.png"/>
+            <h1 class="header-title">Luminacritcs</h1>  
+        </div>
         <NavigationBar/>
-    </div>
+        <div class="profile-icon">
+        </div>
+    </header>
     
     <style>
-        .header {
-            width: 100vw;
-            height: 10vh;
+        header {
+            width: 100%;
+            height: 5.5em;
             background: #202324;
             border-bottom: 1px solid #303436;
             display: flex;
             flex-direction: row;
             column-gap: 1em;
             align-items: center;
-            padding: 1em;
+        }
+        .logo {
+            width: 20%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 2em;
+            column-gap: 1em;
         }
         .header-title {
             color: white;
@@ -30,5 +41,6 @@ import NavigationBar from "./NavigationBar.astro";
             width: 3em;
             height: 3rem;
         }
+
 
     </style>
