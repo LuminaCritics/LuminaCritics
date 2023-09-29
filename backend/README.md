@@ -1,3 +1,36 @@
+## Como executar o projeto
+
+- Clone o repositório
+
+- Dentro da pasta backend execute o comando a seguir para criar o ambiente virtual (certifique-se de ter a versão mais atual do python instalada em sua máquina):
+```
+python -m venv venv
+```
+
+- Ative o ambiente virtual(no Windows):
+
+```
+/venv/Scripts/activate
+```
+
+- Ative o ambiente virtual(no Linux):
+
+```
+source venv/bin/activate
+```
+
+- Com o ambiente virtual ativado, na pasta backend execute o seguinte comando para instalar as dependências:
+
+```
+pip install -r requirements.txt
+```
+
+- Agora, execute o seguinte comando para iniciar o servidor:
+
+
+```
+python manage.py runserver
+```
 ## API Endpoints
 
 Para fazer as requisições abaixo, foi utilizada a ferramenta [Httpie](https://httpie.io):
