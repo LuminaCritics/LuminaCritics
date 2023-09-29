@@ -1,0 +1,36 @@
+---
+interface Props {
+
+}
+
+const { } = Astro.props;
+---
+
+    <div class="header">
+        <img class="logo" src="../../public/lamp-cut.png"/>
+        <h1 class="header-title">Luminacritcs</h1>  
+    </div>
+    
+    <style>
+        .header {
+            width: 100vw;
+            height: 10vh;
+            background: #202324;
+            border-bottom: 1px solid #303436;
+            display: flex;
+            flex-direction: row;
+            column-gap: 1em;
+            align-items: center;
+            padding: 1em;
+        }
+        .header-title {
+            color: white;
+            font-weight: bolder;
+            font-size: larger;
+        }
+        .logo {
+            width: 3em;
+            height: 3rem;
+        }
+
+    </style>
