@@ -10,7 +10,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - 3306:3306
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
   backend:
@@ -19,12 +19,8 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     restart: always
-    environment:
-      SECRET_KEY: my_secret_key
-      DEBUG: False
-      ALLOWED_HOSTS: localhost,127.0.0.1
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - db
     volumes:
@@ -36,7 +32,7 @@ services:
     container_name: frontend
     restart: always
     ports:
-      - 4321:4321
+      - "4321:4321"
     depends_on:
       - backend
     volumes:
