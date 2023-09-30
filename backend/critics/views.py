@@ -1,24 +1,13 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.generics import RetrieveUpdateAPIView, DestroyAPIView
-from django.contrib.auth import get_user_model
-from django.contrib.auth.hashers import make_password
-from rest_framework import generics
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.models import Token
-from django.conf import settings
-from django.shortcuts import render
-from django.core.mail import send_mail
-from django.contrib.auth.models import User
-from copy import deepcopy
+from rest_framework.response import Response
+from .serializers import UserSerializer
 
-from .models import Usuario
-from .serializers import UsuarioSerializer
+from .models import CustomUser
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from django.conf import settings
-from django.shortcuts import render
 from django.core.mail import send_mail
 
 subject = 'Test Email'
@@ -28,54 +17,47 @@ recipient_list = ['testeemail@gmail.com']
 
 send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-class UsuarioListView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        usuarios = Usuario.objects.all()
-        serializer = UsuarioSerializer(usuarios, many=True)
-        return Response(serializer.data)
-
-class UsuarioCreateView(APIView):
-    #permission_classes = [IsAuthenticated]
-
-    def post(self, request):
-        data = request.data
-        password = data.get('senha')
-        data.pop('senha')
-        serializer = UsuarioSerializer(data=data)
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def register_user(request):
+    if request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            #print(f'\033[94m {serializer.validated_data} \033[0m]]')
-            fields = deepcopy(serializer.validated_data) 
             serializer.save()
-            user = User.objects.create_user(
-                username = fields['email'],
-                email = fields['email'],
-                first_name = fields['primeiro_nome'],
-                last_name = fields['sobrenome'],
-                password = password
-            )
-            Token.objects.get_or_create(user=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UsuarioUpdateView(RetrieveUpdateAPIView):
-    permission_classes = [IsAuthenticated]
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_users(request):
+    if request.method == 'GET':
+        users = CustomUser.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-class UsuarioDeleteView(DestroyAPIView):
-    permission_classes = [IsAuthenticated]
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_user(request, user_id):
+    if request.method == 'PUT':
+        try:
+            user = CustomUser.objects.get(id=user_id)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
-User = get_user_model()
+        serializer = UserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UsuarioLoginView(TokenObtainPairView):
-    pass
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_user(request, user_id):
+    if request.method == 'DELETE':
+        try:
+            user = CustomUser.objects.get(id=user_id)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
-class UsuarioLogoutView(generics.CreateAPIView):
-    authentication_classes = ()
-    permission_classes = ()
-    
-
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
