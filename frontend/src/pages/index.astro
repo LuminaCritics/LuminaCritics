@@ -1,22 +1,64 @@
 ---
-import Layout from '../layouts/pageLayout/pageLayout.astro';
+import Layout from '../layouts/pageLayout.astro';
+import StardewBackground from '../components/pageComponents/stardewBackground.astro';
+import ContentCard from '../components/pageComponents/contentCard.astro';
+import ContentContainer from '../components/pageComponents/contentContainer.astro';
 ---
 
-	<Layout title="Página Principal">
-		<div class="container">
-			<h1 class="home-page-greetings">Olá Mundo!</h1>
-		</div>
-	</Layout>
-	
-<style>
-	.container {
-		height: 1000px;
-	}
-	.home-page-greetings {
-		font-size: 1em;
-		color: white;
-		margin: 1em
-	}
-	
+<StardewBackground />
 
-</style>
+<Layout title="Página Principal">
+	<ContentContainer>
+		<ContentCard
+			title = "Boku dake ga inai machi" 
+			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
+			newContent = "Novo"
+			description = "Esse é bom"
+			tagOne = "seinen"
+			tagTwo = "shounen"
+
+		/>
+
+		<ContentCard
+			title = "Boku dake ga inai machi" 
+			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
+			newContent = "Novo"
+			description = "Esse é bom"
+			tagOne = "seinen"
+			tagTwo = "shounen"
+
+		/>
+
+		<ContentCard
+			title = "Boku dake ga inai machi" 
+			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
+			newContent = "Novo"
+			description = "Esse é bom"
+			tagOne = "seinen"
+			tagTwo = "shounen"
+
+		/>
+
+		<ContentCard
+			title = "Boku dake ga inai machi" 
+			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
+			newContent = "Novo"
+			description = "Esse é bom"
+			tagOne = "seinen"
+			tagTwo = "shounen"
+
+		/>
+
+		<ContentCard
+			title = "Boku dake ga inai machi" 
+			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
+			newContent = "Novo"
+			description = "Esse é bom"
+			tagOne = "seinen"
+			tagTwo = "shounen"
+
+		/>
+
+		
+	</ContentContainer>
+</Layout>
