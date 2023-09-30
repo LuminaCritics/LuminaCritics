@@ -1,9 +1,0 @@
-from django.apps import AppConfig
-
-
-class CriticsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'critics'
-
-    def ready(self):
-        import critics.signals
