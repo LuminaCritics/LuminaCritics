@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/formLayout.astro';
+import Card from '../components/formComponents/formCard.astro';
+import FormField from "../components/formComponents/formField.astro";
+import StardewBackground from '../components/pageComponents/stardewBackground.astro';
+---
+
+<Layout title="Cadastro">
+
+	<script>
+
+		import * as yup from "yup";
+		import AWM from "awesome-notifications";
+
+		function login (event) {
+
+			event.preventDefault ();
+
+			let data = {
+                name : document.querySelector ("#name").value,
+                password : document.querySelector ("#password").value,
+				email : document.querySelector ("#email").value
+			}
+
+			let validation = yup.object ().shape ({
+                name : yup.string().min(5).max(20),
+                password : yup.string().required().min(8),
+				email : yup.string().email().required()
+                
+			});
+
+			validation.validate (data).then (() => {
+				console.log ("passou");
+			})
+			.catch (() => {
+				new AWM ().error ("Credenciais inválidas, verifique se seu usuário existe ou se as credenciais estão corretas.");
+			});
+
+		}
+
+		document.getElementById ("button").addEventListener ("click" , login)
+	</script>
+
+	<main>
+		<StardewBackground />
+		<Card
+			href="/login"
+			title="Cadastro"
+			description="Aqui você pode desbravar o universo dos filmes, séries, animes e muito mais. Tudo isso a uma conta de distância."
+			hrefText = "Já tem conta ?"
+			submitValue = "Cadastrar"
+			hrefTwo = ""
+			hrefTwoText = ""
+		>
+			<FormField
+				type = "text"
+				title = "Nome"
+				id = "name"
+			/>
+			<FormField
+				type = "password"
+				title = "Senha"
+				id = "password"
+			/>
+            <FormField
+				type = "email"
+				title = "Email"
+				id = "email"
+			/>
+
+		</Card>
+	</main>
+</Layout>

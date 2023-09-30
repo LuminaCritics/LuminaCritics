@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/formLayout.astro';
+import Card from '../components/formComponents/formCard.astro';
+import FormField from "../components/formComponents/formField.astro";
+import StardewBackground from '../components/pageComponents/stardewBackground.astro';
+---
+
+<Layout title="Login">
+
+	<script>
+
+		import * as yup from "yup";
+		import AWM from "awesome-notifications";
+
+		function login (event) {
+
+			event.preventDefault ();
+
+			let data = {
+				email : document.querySelector ("#email").value,
+				password : document.querySelector ("#password").value
+			}
+
+			let validation = yup.object ().shape ({
+				email : yup.string().email().required(),
+				password : yup.string().required().min(8)
+			});
+
+			validation.validate (data).then (() => {
+				console.log ("passou");
+			})
+			.catch (() => {
+				new AWM ().error ("Credenciais inválidas, verifique se seu usuário existe ou se as credenciais estão corretas.");
+			});
+
+		}
+
+		document.getElementById ("button").addEventListener ("click" , login)
+	</script>
+
+	<main>
+		<StardewBackground />
+		<Card
+				href="/retrieve"
+				title="Login"
+				description="Aqui você pode desbravar o universo dos filmes, séries, animes e muito mais."
+				hrefText = "Esqueceu a senha ?"
+				submitValue = "Login"
+				hrefTwo = "/signup"
+				hrefTwoText = "Não tenho conta"
+			>
+			<FormField
+					type = "email"
+					title = "Email"
+					id = "email"
+			/>
+			<FormField
+					type = "password"
+					title = "Senha"
+					id = "password"
+			/>
+
+		</Card>
+	</main>
+	
+</Layout>
