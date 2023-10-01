@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 from decouple import config
 
@@ -33,23 +34,26 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'rest_framework',
-    'critics',
     'rest_framework.authtoken',
+    'critics',
+    'rest_framework_simplejwt',
+    'corsheaders',
+    'django_rest_passwordreset',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_rest_passwordreset',
-    'corsheaders',
     'drf_yasg',
 ]
+
+AUTH_USER_MODEL = 'critics.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    )
 }
 
 SWAGGER_SETTINGS = {
@@ -69,14 +73,13 @@ SWAGGER_SETTINGS = {
     'DEFAULT_INFO': 'sua_app.urls.swagger_info',
 }
 
-import datetime
-
-JWT_AUTH = {
-    'JWT_SECRET_KEY': 'luminacriticsdevelopers',
-    'JWT_ALGORITHM': 'HS256',
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),  # tempo de expiração.
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),  # tempo de expiração para tokens de atualização.
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=14),
+    'SLIDING_TOKEN_REFRESH_LIMIT': None,
+    'SLIDING_TOKEN_USER_ID_CLAIM': 'user_id',
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
 }
 
 MIDDLEWARE = [
