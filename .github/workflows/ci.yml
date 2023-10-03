@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USER }}/luminacritics-backend:latest ./backend
+          docker build -t ${{ secrets.DOCKERHUB_USER }}/luminacritics-backend:latest -f ./backend/Dockerfile.deploy ./backend
           docker push ${{ secrets.DOCKERHUB_USER }}/luminacritics-backend:latest
 
       - name: SSH and Deploy to Droplet
