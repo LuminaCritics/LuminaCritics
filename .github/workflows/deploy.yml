@@ -36,4 +36,4 @@ jobs:
         with:
           project: "warm-emu-59"
           entrypoint: "index.js" # 📝 Update the entrypoint if necessary
-          root: "." # 📝 Update the root if necessary
+          root: "./frontend" # 📝 Update the root if necessary
