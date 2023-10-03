@@ -16,4 +16,4 @@ ENV PYTHONPATH /app:$PYTHONPATH
 
 EXPOSE 8000
 
-CMD ["cd", "/app", "&&", "gunicorn", "luminacritics.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "luminacritics.wsgi:application", "--bind", "0.0.0.0:8000"]
