@@ -3,7 +3,7 @@ name: deploy
 on:
   push:
     branches:
-      - ops/ci-cd
+      - develop
 
 jobs:
   build-and-deploy:
