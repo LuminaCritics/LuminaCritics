@@ -7,10 +7,10 @@ services:
     networks:
       - conec
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE_NAME}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: database
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
     ports:
       - "3306:3306"
     volumes:
@@ -22,10 +22,10 @@ services:
       dockerfile: Dockerfile.deploy
     container_name: backend
     environment: 
-      - MYSQL_DATABASE_NAME=${MYSQL_DATABASE_NAME}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE_NAME=database
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_PORT=3306
       - MYSQL_HOST=db
     restart: always
