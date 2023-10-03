@@ -19,7 +19,7 @@ services:
     image: luminacritics-backend:latest
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.deploy
     container_name: backend
     environment: 
       - MYSQL_DATABASE_NAME=${MYSQL_DATABASE_NAME}
