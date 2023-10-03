@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
@@ -125,14 +125,13 @@ WSGI_APPLICATION = 'luminacritics.wsgi.application'
 #     }
 # }
 DATABASES = {
-   'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('MYSQL_DATABASE_NAME'),
-        'USER': config('MYSQL_USER'),
-        'PASSWORD': config('MYSQL_PASSWORD'),
-        'HOST': config('MYSQL_HOST'),
-        'PORT': config('MYSQL_PORT'),
-
+        'NAME': os.getenv('MYSQL_DATABASE_NAME'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': os.getenv('MYSQL_HOST'),
+        'PORT': os.getenv('MYSQL_PORT'),
     }
 }
 print(DATABASES)

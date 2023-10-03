@@ -1,0 +1,40 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - ops/ci-cd
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3.0.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_KEY }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USER }}/luminacritics-backend:latest ./backend
+          docker push ${{ secrets.DOCKERHUB_USER }}/luminacritics-backend:latest
+
+      - name: SSH and Deploy to Droplet
+        run: |
+          echo "${{ secrets.DO_SSH_KEY }}" > droplet_key
+          chmod 600 droplet_key
+
+          ssh -o StrictHostKeyChecking=no -i droplet_key ${{ secrets.DO_USERNAME }}@${{ secrets.DO_HOST }} <<EOF
+          docker login --username ${{ secrets.DOCKERHUB_USER }} --password ${{ secrets.DOCKERHUB_KEY }}
+          docker pull ${{ secrets.DOCKERHUB_USER }}/luminacritics-backend:latest
+          cd /home/luminacritics
+          docker-compose down
+          docker-compose up -d
+          EOF
+
+          rm -f droplet_key

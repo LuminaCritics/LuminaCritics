@@ -16,6 +16,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
   backend:
+    image: luminacritics-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
