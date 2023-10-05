@@ -1,9 +1,5 @@
 from django.urls import path
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView
-)
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -13,6 +9,7 @@ from .views import(
     get_users,
     update_user,
     delete_user,
+    login
 )
 
 schema_view = get_schema_view(
@@ -30,10 +27,9 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('usuarios/', get_users, name='listar-usuarios'),
     path('usuarios/criar/', register_user, name='criar-usuarios'),
+    path('usuarios/login/', login, name='login-usuarios'),
     path('usuarios/<int:user_id>/', update_user, name='atualizar-usuario'),
     path('usuarios/<int:user_id>/remover/', delete_user, name='deletar-usuario'),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
