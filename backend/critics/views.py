@@ -50,6 +50,17 @@ def get_users(request):
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_by_id(request, user_id):
+    if request.method == 'GET':
+        try:
+            user = CustomUser.objects.get(id=user_id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_user(request, user_id):
