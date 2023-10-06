@@ -7,6 +7,7 @@ from drf_yasg import openapi
 from .views import(
     register_user,
     get_users,
+    get_user_by_id,
     update_user,
     delete_user,
     login
@@ -25,10 +26,11 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('usuarios/', get_users, name='listar-usuarios'),
     path('usuarios/criar/', register_user, name='criar-usuarios'),
     path('usuarios/login/', login, name='login-usuarios'),
-    path('usuarios/<int:user_id>/', update_user, name='atualizar-usuario'),
+    path('usuarios/', get_users, name='listar-usuarios'),
+    path('usuarios/<int:user_id>/', get_user_by_id, name='buscar-usuario'),
+    path('usuarios/<int:user_id>/atualizar', update_user, name='atualizar-usuario'),
     path('usuarios/<int:user_id>/remover/', delete_user, name='deletar-usuario'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
