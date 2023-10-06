@@ -40,16 +40,16 @@ Para fazer as requisições abaixo, foi utilizada a ferramenta [Httpie](https://
 ```
 Requisição:
 
-http POST localhost:8000/luminacritics/usuarios/criar/ primeiro_nome="goku" sobrenome="kakaroto" email="songoku@gmail.com" senha="supersayajin"
+http POST localhost:8000/luminacritics/usuarios/criar/ username="luffy" email="gomugomu@gmail.com" password="gearfifth"
 
 Resposta:
 
 HTTP/1.1 201 Created
-Allow: POST, OPTIONS
-Content-Length: 82
+Allow: OPTIONS, POST
+Content-Length: 56
 Content-Type: application/json
 Cross-Origin-Opener-Policy: same-origin
-Date: Thu, 28 Sep 2023 19:56:41 GMT    
+Date: Fri, 06 Oct 2023 14:31:47 GMT    
 Referrer-Policy: same-origin
 Server: WSGIServer/0.2 CPython/3.11.5  
 Vary: Accept, origin
@@ -57,10 +57,9 @@ X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 
 {
-    "email": "songoku@gmail.com",
-    "id": 2,
-    "primeiro_nome": "goku",     
-    "sobrenome": "kakaroto"      
+    "email": "gomugomu@gmail.com",
+    "id": 3,
+    "username": "luffy"
 }
 ```
 
@@ -69,24 +68,107 @@ X-Frame-Options: DENY
 ```
 Requisição:
 
-http POST localhost:8000/luminacritics/login/ username="songoku@gmail.com" password="supersayajin"
+http POST localhost:8000/luminacritics/usuarios/login/ username="luffy" password="gearfifth"
 
 Resposta:
 
-HTTP/1.1 200 OK     
-Allow: POST, OPTIONS
-Content-Length: 483
+HTTP/1.1 200 OK
+Allow: OPTIONS, POST
+Content-Length: 240
 Content-Type: application/json
 Cross-Origin-Opener-Policy: same-origin
-Date: Thu, 28 Sep 2023 19:59:21 GMT
+Date: Fri, 06 Oct 2023 14:33:28 GMT    
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.11.5  
+Vary: Accept, origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2NjA2NDA4LCJpYXQiOjE2OTY2MDI4MDgsImp0aSI6IjBjMWU3OWYwNmU4ZDQxNDBhYmJiN2UyNmM3YTQ1YzliIiwidXNlcl9pZCI6M30.m7TzLR-HXeWs6pzEgpLnr5IcKGTGVgOU45NaZ9plHWM"
+}
+```
+
+- Listar usuários
+
+```
+Requisição:
+
+http GET localhost:8000/luminacritics/usuarios/ "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2NjA2NzQ5LCJpYXQiOjE2OTY2MDMxNDksImp0aSI6ImY0ZWYzNmZhYzc4NDQ1ODA5Y2UzYzNlMmI3ZDU0MGVkIiwidXNlcl9pZCI6M30.cbqXEDrkrAVOoRcrZaj8TWerFsMztzx6QkbWYxYwxPo"
+
+Resposta:
+
+HTTP/1.1 200 OK
+Allow: OPTIONS, GET
+Content-Length: 114
+Content-Type: application/json
+Cross-Origin-Opener-Policy: same-origin
+Date: Fri, 06 Oct 2023 14:39:58 GMT
 Referrer-Policy: same-origin
 Server: WSGIServer/0.2 CPython/3.11.5
 Vary: Accept, origin
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 
+[
+    {
+        "email": "luccas@gmail.com",
+        "id": 2,
+        "username": "Luccas"
+    },
+    {
+        "email": "gomugomu@gmail.com",
+        "id": 3,
+        "username": "luffy"
+    }
+]
+```
+
+- Atualizar usuário
+
+```
+Requisição:
+
+http PUT localhost:8000/luminacritics/usuarios/3/ username="Luffy" email="kaizoku-o@gmail.com" password="gearfifth" "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2NjA2NzQ5LCJpYXQiOjE2OTY2MDMxNDksImp0aSI6ImY0ZWYzNmZhYzc4NDQ1ODA5Y2UzYzNlMmI3ZDU0MGVkIiwidXNlcl9pZCI6M30.cbqXEDrkrAVOoRcrZaj8TWerFsMztzx6QkbWYxYwxPo"
+
+Resposta:
+
+HTTP/1.1 200 OK
+Allow: OPTIONS, PUT
+Content-Length: 57
+Content-Type: application/json
+Cross-Origin-Opener-Policy: same-origin
+Date: Fri, 06 Oct 2023 14:43:36 GMT    
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.11.5  
+Vary: Accept, origin
+X-Content-Type-Options: nosniff        
+X-Frame-Options: DENY
+
 {
-    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk1OTMxNDYxLCJpYXQiOjE2OTU5MzExNjEsImp0aSI6IjJkMDlkMGUxZDA2ODQwMGZhZmI3ZDRhNWIyNWQ3ZmNkIiwidXNlcl9pZCI6M30.ESXXbHcmzwJw0-CUFBRAhH-rBiq6c1nfcH_EnM6nFCc",
-    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5NjAxNzU2MSwiaWF0IjoxNjk1OTMxMTYxLCJqdGkiOiJjMDdiZDAyMTYzMWE0MzhjOWZmM2U3ODJmMzFkOWVjNyIsInVzZXJfaWQiOjN9.zMFURBeidcFGf3ko1wRkjxHxEyWHRqVfH-Rv161ZLrI"
+    "email": "kaizoku-o@gmail.com",
+    "id": 3,
+    "username": "Luffy"
 }
+```
+
+- Remover usuário
+
+```
+Requisição:
+
+http DELETE localhost:8000/luminacritics/usuarios/3/remover/ "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2NjA2NzQ5LCJpYXQiOjE2OTY2MDMxNDksImp0aSI6ImY0ZWYzNmZhYzc4NDQ1ODA5Y2UzYzNlMmI3ZDU0MGVkIiwidXNlcl9pZCI6M30.cbqXEDrkrAVOoRcrZaj8TWerFsMztzx6QkbWYxYwxPo"
+
+Resposta:
+
+HTTP/1.1 204 No Content
+Allow: DELETE, OPTIONS
+Content-Length: 0
+Cross-Origin-Opener-Policy: same-origin
+Date: Fri, 06 Oct 2023 14:45:21 GMT
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.11.5
+Vary: Accept, origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
 ```
