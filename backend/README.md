@@ -124,6 +124,34 @@ X-Frame-Options: DENY
 ]
 ```
 
+- Buscar usuário por ID
+
+```
+Requisição:
+
+http GET localhost:8000/luminacritics/usuarios/4/ "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2NjEwNzE3LCJpYXQiOjE2OTY2MDcxMTcsImp0aSI6IjFjOGQ4MzBhN2I0OTRmOGZiY2E1MDVkNGUxNGJmZWE3IiwidXNlcl9pZCI6NH0._-pMnY3AW6H8hcAIjlfbgmmdHOa67v_lOLrmfRvv_-8"
+
+Resposta:
+
+HTTP/1.1 200 OK
+Allow: OPTIONS, GET
+Content-Length: 56
+Content-Type: application/json
+Cross-Origin-Opener-Policy: same-origin
+Date: Fri, 06 Oct 2023 15:45:57 GMT
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.11.5
+Vary: Accept, origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+{
+    "email": "gomugomu@gmail.com",
+    "id": 4,
+    "username": "luffy"
+}
+```
+
 - Atualizar usuário
 
 ```
