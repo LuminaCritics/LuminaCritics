@@ -8,6 +8,10 @@ Os métodos e ferramentas que serão utilizados estarão descritos abaixo.
 
 ---
 
+## Visão do produto
+
+Para amantes de cinema e de TV que desejam uma plataforma para compartilhar e acessar avaliações e opiniões sobre seus filmes favoritos o LuminaCritics é uma plataforma digital de avaliação de conteúdo áudiovisual que oferece uma comunidade engajada e recursos para descoberta de novos filmes ao contrário de Rotten Tomatoes ou MyAnimeList o nosso produto prioriza uma experiência de usuário responsiva, adaptável para todos os dispositivos, e uma interface amigável para avaliações e descobertas.
+
 ## Grupo
 
 - [Emanuel Catão Montenegro](https://github.com/emanuelcatao)
@@ -32,7 +36,7 @@ Os métodos e ferramentas que serão utilizados estarão descritos abaixo.
 
 ---
 
-### Definindo os requisitos 
+### Definindo os requisitos funcionais
 
 - [ ] RF01 - Visualizar home.
 - [ ] RF02 - Cadastrar usuário.
@@ -53,7 +57,7 @@ Os métodos e ferramentas que serão utilizados estarão descritos abaixo.
 
 ---
 
-# User stories
+# User stories de requisitos funcionais (RF)
 
 ## **RF01 - Visualizar home**
 
@@ -61,7 +65,7 @@ Os métodos e ferramentas que serão utilizados estarão descritos abaixo.
 
 ---
 
-Enquanto "usuário comum" desejo visualizar a página home para poder ver alguns filmes e séries que ela automaticamente me propõe. Devo conseguir fazer isso sem necessariamente estar logado. 
+Como usuário, desejo visualizar a página inicial do aplicativo com o objetivo de descobrir os filmes/séries em destaque e ver as últimas avaliações e comentários feitos pela comunidade.
 
 ---
 
@@ -71,7 +75,7 @@ Enquanto "usuário comum" desejo visualizar a página home para poder ver alguns
 
 ---
 
-Como usuário, quero poder me cadastrar fornecendo informações básicas como nome, e-mail e senha para ter acesso às funcionalidades exclusivas do aplicativo.
+Como usuário, desejo criar uma conta no aplicativo com o objetivo de poder avaliar filmes/séries, favoritar conteúdos e interagir com outros usuários na plataforma.
 
 ---
 
@@ -81,7 +85,7 @@ Como usuário, quero poder me cadastrar fornecendo informações básicas como n
 
 ---
 
-Como usuário, quero poder recuperar minha senha caso eu a esqueça, para poder acessar minha conta novamente.
+Como usuário, desejo redefinir minha senha em caso de esquecimento com o objetivo de recuperar o acesso à minha conta para continuar usando o aplicativo.
 
 ---
 
@@ -91,8 +95,7 @@ Como usuário, quero poder recuperar minha senha caso eu a esqueça, para poder 
 
 ---
 
-Como usuário, quero poder fazer login usando meu e-mail e senha, para acessar minha conta e suas funcionalidades. Também desejo fazer logout para sair da minha conta quando necessário.
-
+Como usuário, desejo entrar e sair da minha conta facilmente, com o objetivo de acessar minhas avaliações e interações sociais quando estiver usando o aplicativo, e garantir a segurança da minha conta.
 ---
 
 ## **RF05 - Visualizar perfil**
@@ -101,7 +104,7 @@ Como usuário, quero poder fazer login usando meu e-mail e senha, para acessar m
 
 ---
 
-Como usuário, quero visualizar meu perfil para ver minhas informações, avaliações, favoritos e comentários que fiz.
+Como usuário, desejo ver informações detalhadas do meu perfil, com o objetivo de acompanhar minhas atividades, ver minhas avaliações e interações anteriores na plataforma.
 
 ---
 
@@ -111,7 +114,7 @@ Como usuário, quero visualizar meu perfil para ver minhas informações, avalia
 
 ---
 
-Como usuário, quero poder editar os dados do meu perfil, como foto, nome e senha, para manter minha conta atualizada.
+Como usuário, desejo poder editar minhas informações pessoais com o objetivo de manter meu perfil atualizado e refletir com precisão minhas preferências e interesses.
 
 ---
 
@@ -121,7 +124,7 @@ Como usuário, quero poder editar os dados do meu perfil, como foto, nome e senh
 
 ---
 
-Enquanto "usuário comum" desejo visualizar um filme / série em específico quando eu clicar nela. Ao vê-la que ver seu título, sinopse, avaliação dos críticos, avaliação dos usuários leigos, comentários mais relevantes e se possível diretores, atores e estúdio do filme.
+Como usuário, desejo acessar informações detalhadas sobre um filme/série específico com o objetivo de obter detalhes sobre o conteúdo, como sinopse, elenco, e avaliações, para decidir se quero assistir ou não.
 
 ---
 
@@ -131,7 +134,7 @@ Enquanto "usuário comum" desejo visualizar um filme / série em específico qua
 
 --- 
 
-Como um usuário, eu quero poder buscar filmes e séries por título, gênero, atores ou diretores para encontrar algo específico para assistir.
+Como usuário, desejo poder pesquisar por filmes/séries com o objetivo de: encontrar facilmente os filmes/séries que estou interessado em assistir, usando palavras-chave, títulos ou nomes de atores.
 
 ---
 
@@ -141,7 +144,7 @@ Como um usuário, eu quero poder buscar filmes e séries por título, gênero, a
 
 ---
 
-Enquanto "usuário comum ou crítico" ao visualizar um filme desejo emitir minha avaliação sobre ele junto a um texto explicando o porque da nota do filme.
+Como usuário, desejo poder atribuir uma pontuação e escrever uma crítica para um filme/série com o objetivo de compartilhar minha opinião sobre o conteúdo com a comunidade, ajudando outros usuários a decidir se devem assistir ou não.
 
 ---
 
@@ -151,7 +154,7 @@ Enquanto "usuário comum ou crítico" ao visualizar um filme desejo emitir minha
 
 ---
 
-Como usuário, ao visualizar um filme ou série que me agrade, quero poder adicioná-lo aos meus favoritos para fácil acesso no futuro.
+Como usuário, desejo adicionar filmes/séries à minha lista de favoritos com o objetivo de criar uma lista personalizada de conteúdos que eu gostei e que pretendo assistir no futuro.
 
 ---
 
@@ -161,7 +164,7 @@ Como usuário, ao visualizar um filme ou série que me agrade, quero poder adici
 
 ---
 
-Como usuário, quero poder visualizar minha lista de filmes e séries favoritos para decidir o que assistir.
+Como usuário, desejo ver a lista dos meus filmes/séries favoritos com o objetivo de acessar facilmente a lista dos conteúdos que apreciei e que adicionei como favoritos anteriormente.
 
 ---
 
@@ -171,7 +174,7 @@ Como usuário, quero poder visualizar minha lista de filmes e séries favoritos 
 
 ---
 
-Enquanto "usuário comum ou crítico", ao visualizar um filme ou série, quero poder deixar um comentário compartilhando minha opinião sobre a obra.
+Como usuário, desejo poder escrever comentários sobre filmes/séries com o objetivo de compartilhar minhas opiniões específicas sobre um filme/série com outros usuários e iniciar discussões na comunidade.
 
 ---
 
@@ -181,7 +184,7 @@ Enquanto "usuário comum ou crítico", ao visualizar um filme ou série, quero p
 
 ---
 
-Como usuário, ao ler comentários de outros usuários em um filme ou série, quero poder avaliar se o comentário foi útil ou não.
+Como usuário, desejo poder avaliar os comentários feitos por outros usuários com o objetivo de expressar concordância ou discordância com as opiniões de outros usuários e contribuir para a classificação da qualidade dos comentários.
 
 ---
 
@@ -191,7 +194,7 @@ Como usuário, ao ler comentários de outros usuários em um filme ou série, qu
 
 ---
 
-Como autor de um comentário, quero poder editar ou excluir meu próprio comentário caso mude de opinião ou encontre um erro no que escrevi.
+Como usuário, desejo poder editar ou remover meus comentários anteriores com o objetivo de corrigir erros ou retratar melhor minha opinião após a publicação, garantindo que meu feedback seja preciso.
 
 ---
 
@@ -201,7 +204,7 @@ Como autor de um comentário, quero poder editar ou excluir meu próprio coment�
 
 ---
 
-Como usuário, ao encontrar um comentário ofensivo ou inapropriado, quero poder denunciá-lo para que os administradores tomem uma ação.
+Como usuário, desejo poder denunciar um comentário que considero inapropriado ou ofensivo com o objetivo de garantir um ambiente seguro e respeitoso na plataforma, reportando comportamentos inadequados para a equipe de moderação.
 
 ---
 
@@ -211,6 +214,14 @@ Como usuário, ao encontrar um comentário ofensivo ou inapropriado, quero poder
 
 ---
 
-Como usuário, se eu encontrar informações erradas ou conteúdo inapropriado relacionado a um filme ou série, quero poder denunciá-lo para correção.
+Como usuário, desejo poder denunciar um filme/série que considero inapropriado com o objetivo de contribuir para a manutenção de padrões adequados de conteúdo na plataforma, alertando a equipe de moderação sobre conteúdos que violam as diretrizes da comunidade.
 
 ---
+
+## Protótipos
+
+Os protópipos mostrados não visam definir de forma absoluta uma paleta de cores, apenas o posicionamento e o layuout dos objetos na página.
+
+![image](https://github.com/JoaoGabrielAlvesDeSouza/flow/blob/master/telas%201.PNG)
+![image](https://github.com/JoaoGabrielAlvesDeSouza/flow/blob/master/telas%202.PNG)
+![image](https://github.com/JoaoGabrielAlvesDeSouza/flow/blob/master/telas%203.PNG)
