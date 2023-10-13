@@ -6,7 +6,9 @@ interface Props {
 const {title} = Astro.props;
 ---
 
-<container class = "grid grid-cols-2 gap-2 md:grid-cols-4 z-10 pt-52">
+<div class = "w-full h-96 pt-20">
     <p class = "w-full uppercase text-2xl text-center underline decoration-blue-500 font-bold absolute"> {title} </p>
-    <slot />
-</container>
+    <div class="carousel rounded-box w-full pt-10 absolute">
+        <slot />
+    </div>
+</div>
