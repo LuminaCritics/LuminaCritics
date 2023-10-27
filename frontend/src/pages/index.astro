@@ -1,64 +1,43 @@
 ---
 import Layout from '../layouts/pageLayout.astro';
 import StardewBackground from '../components/pageComponents/stardewBackground.astro';
-import ContentCard from '../components/pageComponents/contentCard.astro';
-import ContentContainer from '../components/pageComponents/contentContainer.astro';
+import Carousel from "../components/dynamicComponents/carousel.jsx";
+import ListOfMovies from "../components/dynamicComponents/listOfMovies.jsx";
+import ContainerOfMovies from '../components/dynamicComponents/containerOfMovies.jsx';
+
+const containerResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen");
+const containerData = await containerResponse.json ();
+
+const carouselResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen?page=3");
+const carouselData = await carouselResponse.json ();
+
+const listOneResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shoujo");
+const listOneData = await listOneResponse.json ();
+
+const listTwoResponse = await fetch ("https://api.consumet.org/meta/anilist-manga/shounen");
+const listTwoData = await listTwoResponse.json ();
+
+const listThreeResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen");
+const listThreeData = await listThreeResponse.json ();
+
+const listFourResponse = await fetch ("https://api.consumet.org/anime/gogoanime/adventure");
+const listFourData = await listFourResponse.json ();
+
 ---
 
-<StardewBackground />
-
 <Layout title="Página Principal">
-	<ContentContainer>
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
 
-		/>
+	<StardewBackground />
 
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
+	<Carousel movies = {carouselData.results} title = {"novidades"} />
 
-		/>
+	<ContainerOfMovies client:only="react" movies = {containerData.results}/>
 
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
+	<div class = "grid grid-cols-4">
+		<ListOfMovies client:only="react" movies = {listOneData.results} title = "shoujo"/>
+		<ListOfMovies client:only="react" movies = {listTwoData.results} title = "manga"/>
+		<ListOfMovies client:only="react" movies = {listThreeData.results} title = "shounen"/>
+		<ListOfMovies client:only="react" movies = {listFourData.results} title = "adventure"/>
+	</div>
 
-		/>
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-
-		
-	</ContentContainer>
 </Layout>
