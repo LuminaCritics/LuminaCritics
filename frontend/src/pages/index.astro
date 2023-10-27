@@ -1,114 +1,43 @@
 ---
 import Layout from '../layouts/pageLayout.astro';
 import StardewBackground from '../components/pageComponents/stardewBackground.astro';
-import ContentCard from '../components/pageComponents/contentCard.astro';
-import ContentContainer from '../components/pageComponents/contentContainer.astro';
-import Carousel from '../components/pageComponents/carousel.astro';
-import CarouselItem from '../components/pageComponents/carouselItem.astro';
-import List from '../components/pageComponents/list.astro';
+import Carousel from "../components/dynamicComponents/carousel.jsx";
+import ListOfMovies from "../components/dynamicComponents/listOfMovies.jsx";
+import ContainerOfMovies from '../components/dynamicComponents/containerOfMovies.jsx';
+
+const containerResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen");
+const containerData = await containerResponse.json ();
+
+const carouselResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen?page=3");
+const carouselData = await carouselResponse.json ();
+
+const listOneResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shoujo");
+const listOneData = await listOneResponse.json ();
+
+const listTwoResponse = await fetch ("https://api.consumet.org/meta/anilist-manga/shounen");
+const listTwoData = await listTwoResponse.json ();
+
+const listThreeResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen");
+const listThreeData = await listThreeResponse.json ();
+
+const listFourResponse = await fetch ("https://api.consumet.org/anime/gogoanime/adventure");
+const listFourData = await listFourResponse.json ();
+
 ---
 
 <Layout title="Página Principal">
 
 	<StardewBackground />
 
-	<Carousel title = "Novidades">
-		<CarouselItem 
-			imgUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg"
-			alt = "boku dake ga inai machi"
-		/>
-		<CarouselItem 
-			imgUrl = "https://media.fstatic.com/2KGz9iTGq_EcSoKYRCeH749QD7o=/322x478/smart/filters:format(webp)/media/movies/covers/2011/06/05489415e8f4bbbb7fe4ce86ecc1a66e_1.jpg"
-			alt = "avatar a lenda de ang"
-		/>
-		<CarouselItem 
-			imgUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg"
-			alt = "boku dake ga inai machi"
-		/>
-		<CarouselItem 
-			imgUrl = "https://media.fstatic.com/2KGz9iTGq_EcSoKYRCeH749QD7o=/322x478/smart/filters:format(webp)/media/movies/covers/2011/06/05489415e8f4bbbb7fe4ce86ecc1a66e_1.jpg"
-			alt = "avatar a lenda de ang"
-		/>
-		<CarouselItem 
-			imgUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg"
-			alt = "boku dake ga inai machi"
-		/>
-	</Carousel>
+	<Carousel movies = {carouselData.results} title = {"novidades"} />
 
-	<ContentContainer title = "filmes">
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-
-		<ContentCard
-			title = "Boku dake ga inai machi" 
-			imageUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" 
-			newContent = "Novo"
-			description = "Esse é bom"
-			tagOne = "seinen"
-			tagTwo = "shounen"
-
-		/>
-		
-	</ContentContainer>
+	<ContainerOfMovies client:only="react" movies = {containerData.results}/>
 
 	<div class = "grid grid-cols-4">
-		<List title = "Shonen" category = "acao">
-			<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" class = "carousel-item" width = "300px" height = "300px" />
-			<img src="https://media.fstatic.com/2KGz9iTGq_EcSoKYRCeH749QD7o=/322x478/smart/filters:format(webp)/media/movies/covers/2011/06/05489415e8f4bbbb7fe4ce86ecc1a66e_1.jpg" class = "carousel-item" width = "300px" height = "300px" />
-		</List>
-
-		<List title = "Shoujo" category = "acao">
-			<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" class = "carousel-item" width = "300px" height = "300px" />
-			<img src="https://media.fstatic.com/2KGz9iTGq_EcSoKYRCeH749QD7o=/322x478/smart/filters:format(webp)/media/movies/covers/2011/06/05489415e8f4bbbb7fe4ce86ecc1a66e_1.jpg" class = "carousel-item" width = "300px" height = "300px" />
-		</List>
-
-		<List title = "Ação" category = "acao">
-			<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" class = "carousel-item" width = "300px" height = "300px" />
-			<img src="https://media.fstatic.com/2KGz9iTGq_EcSoKYRCeH749QD7o=/322x478/smart/filters:format(webp)/media/movies/covers/2011/06/05489415e8f4bbbb7fe4ce86ecc1a66e_1.jpg" class = "carousel-item" width = "300px" height = "300px" />
-		</List>
-
-		<List title = "Animação" category = "acao">
-			<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/uuBvVQVRUXYdoBRo0HqOhFOoYRZ.jpg" class = "carousel-item" width = "300px" height = "300px" />
-			<img src="https://media.fstatic.com/2KGz9iTGq_EcSoKYRCeH749QD7o=/322x478/smart/filters:format(webp)/media/movies/covers/2011/06/05489415e8f4bbbb7fe4ce86ecc1a66e_1.jpg" class = "carousel-item" width = "300px" height = "300px" />
-		</List>
+		<ListOfMovies client:only="react" movies = {listOneData.results} title = "shoujo"/>
+		<ListOfMovies client:only="react" movies = {listTwoData.results} title = "manga"/>
+		<ListOfMovies client:only="react" movies = {listThreeData.results} title = "shounen"/>
+		<ListOfMovies client:only="react" movies = {listFourData.results} title = "adventure"/>
 	</div>
 
 </Layout>
