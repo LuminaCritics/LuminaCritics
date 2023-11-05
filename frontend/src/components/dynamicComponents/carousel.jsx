@@ -5,8 +5,8 @@ export default function Carousel ({movies, title}) {
             <div class="carousel rounded-box w-full pt-10 absolute">
                 {
                     movies.map ((movies , key) => (
-                        <div class="carousel-item" key = {key}>
-                            <img src = {movies.image} width = "300px" height = "300px" alt = {movies.id} />
+                        <div class="carousel-item" key = {key} >
+                            <img src = {movies.image} width = "150px" height = "150px" alt = {movies.id} />
                         </div>
                     ))
                 }
