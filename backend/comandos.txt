@@ -1,0 +1,13 @@
+#Executar o Docker
+
+docker compose -f docker-compose.yml --env-file .env up #ou use o comando docker-compose(versão antiga)
+
+#Comandos npm
+
+npm i -g yarn
+yarn 
+yarn run dev #iniciar a aplicação
+
+#Comando para gerar novas migrations
+npx sequelize-cli migration:generate --name nome_da_migration
+
