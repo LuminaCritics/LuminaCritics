@@ -1,9 +1,16 @@
 <h1>Para executar o projeto e realizar requisições à API</h1>
 
-- Utilize o comando a seguir na raiz do projeto para executá-lo:
+- Utilize o comando a seguir na raiz do projeto (backend) para executá-lo (se não for usar docker):
 
 ```bash
+ npm i
  npm run dev
+```
+
+- Utilize o comando a seguir dentro da pasta backend para rodar o backend no docker :
+
+```bash
+docker compose up --build
 ```
 
 - A API estará disponível na seguinte url base:
