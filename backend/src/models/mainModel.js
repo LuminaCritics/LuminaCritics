@@ -4,13 +4,15 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME
   host: process.env.DB_HOST,
   dialect: "mysql",
   operatorsAliases: false,
-
+  port: process.env.DB_PORT,
   pool: {
     max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000
-  }
+  },
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD
 });
 
 const db = {};
@@ -20,4 +22,4 @@ db.sequelize = sequelize;
 
 db.tutorials = require("./tutorialModel.js")(sequelize, Sequelize);
 
-module.exports = db;
+module.exports = { db, sequelize };
