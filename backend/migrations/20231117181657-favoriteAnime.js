@@ -6,12 +6,12 @@ module.exports = {
     await queryInterface.createTable
     ('favoriteanimes',{
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       animeName: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       }
     })
