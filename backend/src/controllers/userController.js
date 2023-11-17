@@ -97,12 +97,18 @@ module.exports = {
         return res.status(401).json({ error: "Email ou senha incorretos..." });
       }
 
+      const userWithoutPassword = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      };
+
       const token = jwt.sign(
         { userId: user.id, email: user.email },
         process.env.SECRET
       );
 
-      res.status(200).json({ token });
+      res.status(200).json({ token, user:userWithoutPassword });
     } catch (error) {
       res.status(500).json({ error: "Erro interno do servidor!" });
     }
