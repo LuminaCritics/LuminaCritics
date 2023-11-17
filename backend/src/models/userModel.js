@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const { sequelize } = require("../models/mainModel");
-const FavoriteAnime = require("./favoriteAnimeModel")
+const { db, sequelize } = require("../models/mainModel");
 
 class User extends Model {}
 
@@ -22,8 +21,5 @@ User.init(
     timestamps: false,
   }
 );
-
-User.hasMany(FavoriteAnime);
-FavoriteAnime.belongsTo(User);
 
 module.exports = User;
