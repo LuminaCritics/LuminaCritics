@@ -34,7 +34,7 @@ POST http://localhost:5000/luminacritics/users/create
 - Para fazer login:
 
 ```bash
-POST http://localhost:5000/luminacritics/users/create
+POST http://localhost:5000/luminacritics/users/login
 
 {
     "email":"kakaroto@gmail.com",

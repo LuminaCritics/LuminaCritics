@@ -2,22 +2,23 @@ version: '3.3'
 
 services:
   db:
-    image: mariadb
+    image: benyoo/mariadb
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
       - MYSQL_USER=$DB_USERNAME
       - MYSQL_PASSWORD=$DB_PASSWORD
       - MYSQL_DATABASE=$DB_DATABASE
+      - MAX_ALLOWED_PACKET=$MAX_ALLOWED_PACKET
+      - INNODB_BUFFER_POOL_SIZE=$INNODB_BUFFER_POOL_SIZE
     ports: 
       - $DB_PORT:$DB_PORT
-    command: [--max-allowed-packet=1000]
-  #backend:
-    #build: .
-    #restart: always
-    #ports:
-      #- $NODE_PORT:$NODE_PORT
-    #stdin_open: false
-    #tty: false
-    #depends_on: 
-      #- db
+  backend:
+    build: .
+    restart: always
+    ports:
+      - $NODE_PORT:$NODE_PORT
+    stdin_open: false
+    tty: false
+    depends_on: 
+      - db

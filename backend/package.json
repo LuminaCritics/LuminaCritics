@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run database && npm run migrate && node-dev index.js",
+    "dev": "npm run migrate && node-dev index.js",
     "migrate": "npx sequelize-cli db:migrate",
     "database": "docker compose up -d"
   },

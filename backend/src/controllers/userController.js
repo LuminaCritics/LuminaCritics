@@ -29,7 +29,7 @@ module.exports = {
     try {
       const { name, email, password } = req.body;
 
-      const existingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({ where: {email} });
       if (existingUser) return res.status(400).json({ message: "Este e-mail já está em uso." });
 
       const hashedPassword = await bcrypt.hash(password, 10);

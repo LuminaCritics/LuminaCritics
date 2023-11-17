@@ -13,6 +13,12 @@ import Toast from "../components/formComponents/toast.astro";
 
 		import * as yup from "yup";
 		import sleep from 'sleep-promise';
+		import Axios from "axios";
+		import Cookies from "js-cookie";
+
+		if (Cookies.get ("lctoken")) {
+			window.location = "/";
+		}
 
 		function login (event) {
 
@@ -29,10 +35,20 @@ import Toast from "../components/formComponents/toast.astro";
 			});
 
 			validation.validate (data).then (() => {
-				console.log ("passou");
+				Axios.post ("http://localhost:5000/luminacritics/users/login" , data)
+				.then ((response) => {
+					Cookies.set ("lctoken" , JSON.stringify (response.data));
+					window.location ="/";
+				})
+				.catch(async () => {
+				let toast = document.getElementById("error");
+				toast.style.display="block";
+				await sleep(3000);
+				toast.style.display="none";
+			})
 			})
 			.catch(async () => {
-				let toast = document.getElementById("toast");
+				let toast = document.getElementById("error");
 				toast.style.display="block";
 				await sleep(3000);
 				toast.style.display="none";
@@ -66,7 +82,7 @@ import Toast from "../components/formComponents/toast.astro";
 			/>
 
 		</Card>
-		<Toast message="Credenciais inválidas"/>
+		<Toast message="Credenciais inválidas ou usuário não existe" id = "error"/>
 	</main>
 	
 </Layout>
