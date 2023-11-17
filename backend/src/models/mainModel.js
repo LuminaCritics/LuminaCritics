@@ -6,7 +6,7 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME
   operatorsAliases: false,
   port: process.env.DB_PORT,
   pool: {
-    max: 5,
+    max: 10,
     min: 0,
     acquire: 30000,
     idle: 10000
