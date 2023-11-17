@@ -29,8 +29,9 @@ module.exports = {
     try {
       const { name, email, password } = req.body;
 
-      const existingUser = await User.findOne({ email });
-      if (existingUser) return res.status(400).json({ error: "Este e-mail já está em uso." });
+      const existingUser = await User.findOne({ where: { email: email } });
+      if (existingUser)
+        return res.status(400).json({ error: "Este e-mail já está em uso." });
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -93,9 +94,7 @@ module.exports = {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (!passwordMatch) {
-        return res
-          .status(401)
-          .json({ error: "Email ou senha incorretos..." });
+        return res.status(401).json({ error: "Email ou senha incorretos..." });
       }
 
       const token = jwt.sign(
