@@ -9,7 +9,7 @@ module.exports = {
       const users = await User.findAll();
       res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ message: "Erro interno do servidor!" });
+      res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
   async findById(req, res) {
@@ -18,19 +18,20 @@ module.exports = {
       const user = await User.findOne({ where: { id } });
 
       if (!user) {
-        return res.status(404).json({ message: "Usuário não encontrado!" });
+        return res.status(404).json({ error: "Usuário não encontrado!" });
       }
       res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: "Erro interno do servidor!" });
+      res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
   async create(req, res) {
     try {
       const { name, email, password } = req.body;
 
-      const existingUser = await User.findOne({ email });
-      if (existingUser) return res.status(400).json({ message: "Este e-mail já está em uso." });
+      const existingUser = await User.findOne({ where: { email: email } });
+      if (existingUser)
+        return res.status(400).json({ error: "Este e-mail já está em uso." });
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -38,7 +39,7 @@ module.exports = {
 
       res.status(201).json({ message: "Usuário inserido com sucesso!" });
     } catch (error) {
-      res.status(500).json({ message: "Erro interno do servidor!" });
+      res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
   async update(req, res) {
@@ -53,7 +54,7 @@ module.exports = {
       const user = await User.findOne({ where: { id } });
 
       if (!user) {
-        return res.status(404).json({ message: "Usuário não encontrado!" });
+        return res.status(404).json({ error: "Usuário não encontrado!" });
       }
 
       user.name = name || user.name;
@@ -63,7 +64,7 @@ module.exports = {
       await user.save();
       res.status(201).json({ message: "Usuário atualizado com sucesso!" });
     } catch (error) {
-      res.status(500).json({ message: "Erro interno do servidor!" });
+      res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
   async delete(req, res) {
@@ -72,12 +73,12 @@ module.exports = {
       const user = await User.destroy({ where: { id } });
 
       if (!user) {
-        return res.status(404).json({ message: "Usuário não encontrado!" });
+        return res.status(404).json({ error: "Usuário não encontrado!" });
       }
 
       res.status(200).json({ message: "Usuário removido com sucesso!" });
     } catch (error) {
-      res.status(500).json({ message: "Erro interno do servidor!" });
+      res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
   async login(req, res) {
@@ -87,15 +88,13 @@ module.exports = {
       const user = await User.findOne({ where: { email } });
 
       if (!user) {
-        return res.status(404).json({ message: "Usuário não encontrado!" });
+        return res.status(404).json({ error: "Usuário não encontrado!" });
       }
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (!passwordMatch) {
-        return res
-          .status(401)
-          .json({ message: "Email ou senha incorretos..." });
+        return res.status(401).json({ error: "Email ou senha incorretos..." });
       }
 
       const token = jwt.sign(
@@ -105,7 +104,7 @@ module.exports = {
 
       res.status(200).json({ token });
     } catch (error) {
-      res.status(500).json({ message: "Erro interno do servidor!" });
+      res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
 };
