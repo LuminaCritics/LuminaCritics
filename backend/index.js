@@ -4,7 +4,6 @@ const Routes = require("./src/routes/routes");
 require("dotenv").config();
 
 const app = express();
-const port = 5000
 
 //Configuração de CORS para acesso
 const corsOptions = {
@@ -34,6 +33,6 @@ db.sequelize
 //Rotas
 app.use("/luminacritics", Routes);
 
-app.listen(port, () => {
+app.listen(process.env.NODE_PORT, () => {
   console.log("SERVIDOR ESTÁ ATIVO");
 });
