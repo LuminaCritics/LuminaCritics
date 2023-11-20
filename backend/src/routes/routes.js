@@ -1,8 +1,10 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const animeController = require("../controllers/animeController")
+const animeController = require("../controllers/animeController");
+const commentController = require("../controllers/commentController");
+const ratingController = require("../controllers/ratingController");
 const checkToken = require("../middlewares/auth");
-const { insertValidation, updateValidation, loginValidation } = require("../middlewares/validationMiddleware")
+const { insertValidation, updateValidation, loginValidation } = require("../middlewares/validationMiddleware");
 const router = express.Router();
 
 router.route("/users").get(checkToken, userController.getAll);
@@ -18,5 +20,14 @@ router.route("/animes/:query").get(checkToken, animeController.buscarAnimes)
 router.route("/animes/:query/details").get(checkToken, animeController.buscarAnimeInfo)
 router.route("/animes/:userId/favorite/:animeName").post(checkToken, animeController.adicionarFavorito)
 router.route("/animes/:userId/favorities").get(checkToken, animeController.buscarAnimesFavoritos)
+router.route("/comentario/:userId/comentar/:movie_id/:comment").post(checkToken, commentController.adicionarComentario)
+router.route("/comentario/:userId/comentarios").get(checkToken, commentController.buscarComentarios)
+router.route("/comentario/:userId/comentarios/:movie_id").get(checkToken, commentController.buscarComentariosPorFilme)
+router.route("/comentario/:userId/comentar/editar/:commentId/:comment").put(checkToken, commentController.editarComentario)
+router.route("/comentario/:userId/comentar/deletar/:commentId").delete(checkToken, commentController.deletarComentario)
+router.route("/avaliar/:userId/item/:movie_id/:rating").post(checkToken, ratingController.adicionarAvaliacao)
+router.route("/avaliar/:userId/item/:movie_id/avaliacao").get(checkToken, ratingController.buscarAvalicao)
+router.route("/avaliar/:userId/item/:movie_id/avaliacoes").get(checkToken, ratingController.buscarAvalicoesAll)
+router.route("/avaliar/:userId/item/:movie_id/avaliacao/editar/:rating").put(checkToken, ratingController.editarAvaliacao)
 
 module.exports = router;
