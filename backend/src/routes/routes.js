@@ -14,7 +14,10 @@ router
   .get(checkToken, userController.findById)
   .delete(checkToken, userController.delete);
 
-router.route("/animes/:query").get(checkToken, animeController.buscarAnimes)
+router.route("/users/recuperar-senha").post(userController.recuperarSenha)
+router.route("/users/redefinir-senha").post(userController.redefinirSenha)
+
+router.route("/animes/:query").get(animeController.buscarAnimes)
 router.route("/animes/:query/details").get(checkToken, animeController.buscarAnimeInfo)
 router.route("/animes/:userId/favorite/:animeName").post(checkToken, animeController.adicionarFavorito)
 router.route("/animes/:userId/favorities").get(checkToken, animeController.buscarAnimesFavoritos)

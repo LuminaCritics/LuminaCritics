@@ -2,6 +2,7 @@ require("dotenv").config();
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer")
 
 module.exports = {
   async getAll(req, res) {
@@ -113,4 +114,61 @@ module.exports = {
       res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
+  async recuperarSenha(req, res) {
+    const { email } = req.body;
+
+    try {
+      const user = await User.findOne({ where: { email: email } });
+
+      if (!user)
+        return res.status(404).json({ message: "E-mail não registrado" });
+
+      const token = jwt.sign({ id: user.id }, process.env.SECRET, {
+        expiresIn: '1h',
+      });
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Recuperação de senha',
+        text: `Olá, ${user.name}! Para recuperar a sua senha, acesse o link a seguir: http://localhost:${process.env.NODE_PORT}/luminacritics/users/redefinir-senha,
+        copie e cole o token a seguir para criar uma nova senha: ${token}`,
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      res
+        .status(200)
+        .json({ message: "E-mail de recuperação enviado com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ error: "Erro interno do servidor!" });
+    }
+  },
+  async redefinirSenha(req, res){
+    const { token, newPassword } = req.body;
+
+    try{
+      const decoded = jwt.verify(token, process.env.SECRET);
+      if(!decoded) return res.status(404).json({ error: 'Token incorreto' });
+
+      const user = await User.findByPk(decoded.id);
+      if(!user) return res.status(404).json({ error: 'Usuário não encontrado' });
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      await user.update({ password: hashedPassword })
+
+      return res.status(200).json({ message: 'Senha atualizada com sucesso' });
+    }catch(error){
+      res.status(500).json({ error: "Erro interno do servidor!" });
+    }
+  }
 };
