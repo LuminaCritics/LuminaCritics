@@ -10,10 +10,6 @@ Rating.init({
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
   movie_id: {
     type: DataTypes.INTEGER,
     allowNull: false
@@ -29,7 +25,7 @@ Rating.init({
 }, {
   sequelize,
   modelName: 'Rating',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = Rating;
