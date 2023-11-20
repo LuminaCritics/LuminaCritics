@@ -9,10 +9,6 @@ Comments.init({
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
   movie_id: {
     type: DataTypes.INTEGER,
     allowNull: false
@@ -24,7 +20,7 @@ Comments.init({
 }, {
   sequelize,
   modelName: 'Comments',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = Comments;
