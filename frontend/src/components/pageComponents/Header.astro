@@ -1,8 +1,29 @@
 ---
-
 ---
 
     <header class = "bg-black w-screen z-50 fixed">
+      <script> 
+        import Cookies from "js-cookie";
+    
+        if (Cookies.get ("lctoken")) {
+          let signin = document.getElementById ("signin");
+          signin.style.display = "none";
+        } else {
+          let profile = document.getElementById ("profile");
+          let configurations = document.getElementById ("configurations");
+          let signout = document.getElementById ("signout");
+          profile.style.display = "none";
+          configurations.style.display = "none";
+          signout.style.display = "none";
+        }
+
+        function logout () {
+          Cookies.remove ("lctoken");
+          window.location.reload ();
+        }
+
+        document.getElementById ("logout").addEventListener ("click" , logout)
+        </script>
         <div class="navbar bg-black">
             <div class="navbar-start">
               <a class="btn btn-ghost normal-case invisible sm:visible sm:text-xl  md:text-2xl" href = "/"> Lumina Critics </a>
@@ -32,14 +53,15 @@
                           
                     </label>
                     <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                      <li>
+                      <li id = "profile">
                         <a class="justify-between">
                           Perfil
                           <span class="badge"> Novidades </span>
                         </a>
                       </li>
-                      <li><a> Configurações </a></li>
-                      <li><a> Sair </a></li>
+                      <li id = "configurations"><a> Configurações </a></li>
+                      <li id = "signout"><button id = "logout"> Sair </button></li>
+                      <li id = "signin"><a href = "/login"> Entrar </a></li>
                     </ul>
                   </div>
             </div>

@@ -1,8 +1,6 @@
-FROM python:latest
-
+FROM node:18
 WORKDIR /app
-
+COPY package.json .
+RUN npm i
 COPY . .
-
-RUN pip install -r requirements.txt
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD npm run dev
