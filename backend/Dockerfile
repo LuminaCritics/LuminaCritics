@@ -1,6 +1,13 @@
 FROM node:18
 WORKDIR /app
-COPY package.json .
-RUN npm i
+
+COPY package*.json yarn.lock ./
+
+RUN yarn install
+
 COPY . .
-CMD npm run dev
+
+EXPOSE 5000
+
+
+CMD ["yarn", "run", "dev"]

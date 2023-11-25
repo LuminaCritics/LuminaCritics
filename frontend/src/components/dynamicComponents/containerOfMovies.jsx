@@ -6,9 +6,9 @@ export default function ContainerOfMovies ({movies}) {
             {
                 movies.map ((movies , key) => (
                     <a href = "http://localhost:4321/viewMovie" key = {key}>
-                        <div className="card w- bg-base-100 shadow-xl flex mt-20">
-                            <figure ><img src = {movies.image} alt = {movies.title} width = "150px" height = "150px"/></figure>
-                            <div className="card-body">
+                        <div className="card w- bg-base-100 shadow-xl flex mt-20 justify-center">
+                            <figure ><img src = {movies.image} className = "hover:scale-125 transition duration-500 cursor-pointer" alt = {movies.title} width = "150px" height = "150px"/></figure>
+                            <div className="card-body flex justify-center items-center">
                                 <h2 className="card-title">
                                     {movies.title}
                                     <div className="badge badge-secondary"> {movies.releaseDate} </div>

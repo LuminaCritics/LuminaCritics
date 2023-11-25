@@ -1,17 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const Routes = require("./src/routes/routes");
+const bodyParse = require("body-parser");
 require("dotenv").config();
-
+const morgan = require("morgan");
 const app = express();
 
 //Configuração de CORS para acesso
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: '*',
   credentials: true,
   methods: "GET,PUT,POST,OPTIONS, DELETE",
 };
 app.use(cors(corsOptions));
+app.use(morgan("dev"));
+app.use(bodyParse.urlencoded({ extended: false }));
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -32,7 +35,10 @@ db.sequelize
 
 //Rotas
 app.use("/luminacritics", Routes);
-
+app.get('/',(req, res)=>{
+  res.send("Testando")
+})
 app.listen(process.env.NODE_PORT, () => {
-  console.log("SERVIDOR ESTÁ ATIVO");
+  console.log(`SERVIDOR ESTÁ ATIVO NA PORTA ${process.env.NODE_PORT}`);
 });
+//console.log(process.env)

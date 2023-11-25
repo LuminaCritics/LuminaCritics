@@ -16,23 +16,22 @@ services:
     volumes:
       - db_data:/var/lib/mysql
   backend:
-    image: luminacritics-backend:latest
     build:
       context: ./backend
-      dockerfile: Dockerfile.deploy
+      dockerfile: Dockerfile
     container_name: backend
     environment: 
-      - MYSQL_DATABASE_NAME=database
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=admin
+      - DB_DATABASE=database
+      - DB_USERNAME=admin
+      - DB_PASSWORD=admin
       - MYSQL_ROOT_PASSWORD=admin
-      - MYSQL_PORT=3306
-      - MYSQL_HOST=db
+      - DB_PORT=3306
+      - DB_HOST=db
     restart: always
     networks:
       - conec
     ports:
-      - "8000:8000"
+      - "5000:5000"
     depends_on:
       - db
     volumes:
@@ -45,7 +44,6 @@ services:
     restart: always
     networks:
       - conec
-
     ports:
       - "4321:4321"
     depends_on:
