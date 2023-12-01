@@ -11,3 +11,4 @@ EXPOSE 5000
 
 
 CMD ["yarn", "run", "dev"]
+#CMD ["tail", "-f", "/dev/null"]
