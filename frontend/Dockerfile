@@ -11,3 +11,4 @@ COPY . .
 EXPOSE 4321
 
 CMD ["yarn", "start", "--host"]
+#CMD ["tail", "-f", "/dev/null"]
