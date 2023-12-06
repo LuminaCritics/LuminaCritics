@@ -26,6 +26,7 @@ router.route("/animes/:userId/favorities").get(checkToken, animeController.busca
 router.route("/comentario/:userId/comentar/:movie_id/:comment").post(checkToken, commentController.adicionarComentario)
 router.route("/comentario/:userId/comentarios").get(checkToken, commentController.buscarComentarios)
 router.route("/comentario/:userId/comentarios/:movie_id").get(checkToken, commentController.buscarComentariosPorFilme)
+router.route("/comentario/:userId/comentarios_all/:movie_id").get(checkToken, commentController.retornarComentariosPorFilmeAll)
 router.route("/comentario/:userId/comentar/editar/:commentId/:comment").put(checkToken, commentController.editarComentario)
 router.route("/comentario/:userId/comentar/deletar/:commentId").delete(checkToken, commentController.deletarComentario)
 router.route("/avaliar/:userId/item/:movie_id/:rating").post(checkToken, ratingController.adicionarAvaliacao)

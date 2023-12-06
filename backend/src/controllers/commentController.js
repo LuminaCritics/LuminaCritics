@@ -63,6 +63,26 @@ module.exports = {
         }
     },
 
+    async retornarComentariosPorFilmeAll(req, res) {
+      const { userId, movie_id } = req.params;
+      console.log('estou aqui')
+  
+      try {
+        const user = await User.findOne({ where: { id: userId } });
+  
+        if (!user)
+          return res.status(404).json({ message: "Usuário não encontrado" });
+  
+        const comments = await Comment.findAll({
+          where: { movie_id: movie_id },
+        });
+  
+        res.status(200).json(comments);
+      } catch (error) {
+        res.status(500).json({ error: "Erro interno do servidor" });
+      }
+  },
+
     async editarComentario(req, res) {
         const { userId, commentId, comment } = req.params;
     
