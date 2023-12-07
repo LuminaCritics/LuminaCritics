@@ -66,10 +66,16 @@ http://localhost:5000/luminacritics/users
 http://localhost:5000/luminacritics/comentario/:userId/comentar/:movie_id/:comment
 ```
 
-- Para buscar os comentários de um usuário em um filme:
+- Para buscar todos os comentários de um usuário:
 
 ```bash
 http://localhost:5000/luminacritics/comentario/:userId/comentarios
+```
+
+- Para buscar os comentários de um usuário em um filme:
+
+```bash
+http://localhost:5000/luminacritics/comentario/:userId/comentarios/:movie_id
 ```
 
 - Para retornar todos os comentários de um filme:
