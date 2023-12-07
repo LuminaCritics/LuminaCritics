@@ -50,14 +50,9 @@ module.exports = {
     },
 
     async buscarAvalicoesAll(req, res) {
-        const { userId, movie_id } = req.params;
+        const { movie_id } = req.params;
     
         try {
-          const user = await User.findOne({ where: { id: userId } });
-    
-          if (!user)
-            return res.status(404).json({ message: "Usuário não encontrado" });
-    
           const rating = await Rating.findAll({
             where: { movie_id: movie_id },
           });

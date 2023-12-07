@@ -64,15 +64,9 @@ module.exports = {
     },
 
     async retornarComentariosPorFilmeAll(req, res) {
-      const { userId, movie_id } = req.params;
-      console.log('estou aqui')
+      const { movie_id } = req.params;
   
-      try {
-        const user = await User.findOne({ where: { id: userId } });
-  
-        if (!user)
-          return res.status(404).json({ message: "Usuário não encontrado" });
-  
+      try {  
         const comments = await Comment.findAll({
           where: { movie_id: movie_id },
         });
@@ -88,10 +82,11 @@ module.exports = {
     
         try {
           const user = await User.findOne({ where: { id: userId } });
-          const commentary = await Comment.findOne({ where: { id: commentId } });
     
           if (!user)
             return res.status(404).json({ message: "Usuário não encontrado" });
+
+          const commentary = await Comment.findOne({ where: { id: commentId, userId: user.id } });
           if (!commentary)
             return res.status(404).json({ message: "Comentário não encontrado" });
 
@@ -113,7 +108,7 @@ module.exports = {
           if (!user)
             return res.status(404).json({ message: "Usuário não encontrado" });
 
-          const commentary = await Comment.destroy({ where: { id: commentId } });
+          const commentary = await Comment.destroy({ where: { id: commentId, userId: user.id } });
 
           if (!commentary)
             return res.status(404).json({ message: "Comentário não encontrado" });
