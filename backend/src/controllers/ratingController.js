@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 const Rating = require("../models/ratingModel");
-const { extractDesiredFields } = require("../util/animeUtils");
+const { extractDesiredFields } = require("../util/movieUtils");
 const axios = require("axios");
 
 module.exports = {

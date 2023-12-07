@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../models/mainModel");
-const FavoriteAnime = require("./favoriteAnimeModel");
 const Comment = require("./commentModel");
 const Rating = require("./ratingModel");
 
@@ -20,13 +19,10 @@ User.init(
   },
   {
     sequelize,
-    modelName: "user",
+    modelName: "Users",
     timestamps: false,
   }
 );
-
-User.hasMany(FavoriteAnime);
-FavoriteAnime.belongsTo(User);
 
 User.hasMany(Comment);
 Comment.belongsTo(User);
