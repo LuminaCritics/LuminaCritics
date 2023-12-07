@@ -6,13 +6,13 @@ module.exports = {
     await queryInterface.createTable
     ('users',{
       name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       password: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
     })
     /**
