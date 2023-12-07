@@ -9,8 +9,16 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME
     acquire: 30000,
     idle: 10000
   },
+  dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false  // Isso desativa a verificação de certificado!!!
+      },
+      keepAlive: true,
+  },
   username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD
+  password: process.env.DB_PASSWORD,
+  ssl: true
 });
 
 const db = {};
