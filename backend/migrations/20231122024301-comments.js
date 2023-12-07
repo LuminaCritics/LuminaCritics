@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable
-    ('comments',{
+    ('Comments',{
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('comments')
+    await queryInterface.dropTable('Comments')
     /**
      * Add reverting commands here.
      *

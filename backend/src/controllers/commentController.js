@@ -1,11 +1,10 @@
 const User = require("../models/userModel");
 const Comment = require("../models/commentModel");
-const { extractDesiredFields } = require("../util/animeUtils");
-const axios = require("axios");
 
 module.exports = {
     async adicionarComentario(req, res) {
-        const { userId, movie_id, comment } = req.params;
+        const { userId, movie_id } = req.params;
+        const { comment } = req.body
 
         try {
           const user = await User.findOne({ where: { id: userId } });
@@ -14,7 +13,7 @@ module.exports = {
             return res.status(404).json({ message: "Usuário não encontrado" });
           }
     
-          const newComment = await user.createComment({ movie_id, comment });
+          await user.createComment({ movie_id, comment });
     
           res.status(200).json({
             message: `Comentário adicionado com sucesso!`,
@@ -64,7 +63,8 @@ module.exports = {
     },
 
     async editarComentario(req, res) {
-        const { userId, commentId, comment } = req.params;
+        const { userId, commentId } = req.params;
+        const { comment } = req.body;
     
         try {
           const user = await User.findOne({ where: { id: userId } });
@@ -75,7 +75,7 @@ module.exports = {
           if (!commentary)
             return res.status(404).json({ message: "Comentário não encontrado" });
 
-            commentary.comment = comment || commentary.comment;
+          commentary.comment = comment || commentary.comment;
     
           await commentary.save();
           res.status(201).json({ message: "Comentário atualizado com sucesso!" });

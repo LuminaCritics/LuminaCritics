@@ -3,17 +3,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable
-    ('favoriteanimes',{
+    await queryInterface.createTable('Users', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
-      animeName: {
+      name: {
         type: Sequelize.STRING,
-        allowNull: false,
-      }
+      },
+      email: {
+        type: Sequelize.STRING,
+      },
+      password: {
+        type: Sequelize.STRING,
+      },
     })
     /**
      * Add altering commands here.
@@ -24,7 +28,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('favoriteanimes')
+    await queryInterface.dropTable('Users')
     /**
      * Add reverting commands here.
      *

@@ -12,12 +12,17 @@ services:
     ports: 
       - $DB_PORT:$DB_PORT
     command: [--max-allowed-packet=1000]
-  #backend:
-    #build: .
-    #restart: always
-    #ports:
-      #- $NODE_PORT:$NODE_PORT
-    #stdin_open: false
-    #tty: false
-    #depends_on: 
-      #- db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=$DB_USERNAME
+      - PMA_PASSWORD=$DB_PASSWORD
+      - PMA_PORTS=$DB_PORT
+    ports:
+      - 5050:80
+    depends_on:
+      - db

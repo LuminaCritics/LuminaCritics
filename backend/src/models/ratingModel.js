@@ -24,7 +24,7 @@ Rating.init({
   }
 }, {
   sequelize,
-  modelName: 'Rating',
+  modelName: 'Ratings',
   timestamps: false
 });
 
