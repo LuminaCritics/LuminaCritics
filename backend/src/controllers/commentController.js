@@ -62,16 +62,31 @@ module.exports = {
         }
     },
 
+    async retornarComentariosPorFilmeAll(req, res) {
+      const { movie_id } = req.params;
+  
+      try {  
+        const comments = await Comment.findAll({
+          where: { movie_id: movie_id },
+        });
+  
+        res.status(200).json(comments);
+      } catch (error) {
+        res.status(500).json({ error: "Erro interno do servidor" });
+      }
+  },
+
     async editarComentario(req, res) {
         const { userId, commentId } = req.params;
         const { comment } = req.body;
     
         try {
           const user = await User.findOne({ where: { id: userId } });
-          const commentary = await Comment.findOne({ where: { id: commentId } });
     
           if (!user)
             return res.status(404).json({ message: "Usuário não encontrado" });
+
+          const commentary = await Comment.findOne({ where: { id: commentId, userId: user.id } });
           if (!commentary)
             return res.status(404).json({ message: "Comentário não encontrado" });
 
@@ -93,7 +108,7 @@ module.exports = {
           if (!user)
             return res.status(404).json({ message: "Usuário não encontrado" });
 
-          const commentary = await Comment.destroy({ where: { id: commentId } });
+          const commentary = await Comment.destroy({ where: { id: commentId, userId: user.id } });
 
           if (!commentary)
             return res.status(404).json({ message: "Comentário não encontrado" });
