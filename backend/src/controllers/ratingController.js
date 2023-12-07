@@ -1,7 +1,5 @@
 const User = require("../models/userModel");
 const Rating = require("../models/ratingModel");
-const { extractDesiredFields } = require("../util/animeUtils");
-const axios = require("axios");
 
 module.exports = {
     async adicionarAvaliacao(req, res) {
@@ -17,7 +15,7 @@ module.exports = {
           if (checkRating)
             return res.status(409).json({ message: "Não é possível adicionar uma nova avaliação" })
     
-          const newRating = await user.createRating({ movie_id, rating });
+          await user.createRating({ movie_id, rating });
     
           res.status(200).json({
             message: `Avaliação adicionada com sucesso!`,
@@ -50,14 +48,9 @@ module.exports = {
     },
 
     async buscarAvalicoesAll(req, res) {
-        const { userId, movie_id } = req.params;
+        const { movie_id } = req.params;
     
         try {
-          const user = await User.findOne({ where: { id: userId } });
-    
-          if (!user)
-            return res.status(404).json({ message: "Usuário não encontrado" });
-    
           const rating = await Rating.findAll({
             where: { movie_id: movie_id },
           });

@@ -4,23 +4,39 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable
-    ('Ratings',{
+    ('Movies', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      movie_id: {
-        type: Sequelize.INTEGER,
+      genres: {
+        type: Sequelize.JSON,
         allowNull: false
       },
-      rating: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-          min: 1,
-          max: 5
-        }
+      popularity: {
+        type: Sequelize.DOUBLE,
+        allowNull: false
+      },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      overview: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      release_date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false
+      },
+      backdrop_path: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      poster_path: {
+        type: Sequelize.STRING,
+        allowNull: false
       }
     })
     /**
@@ -32,7 +48,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Ratings')
+    await queryInterface.dropTable('Movies')
     /**
      * Add reverting commands here.
      *
