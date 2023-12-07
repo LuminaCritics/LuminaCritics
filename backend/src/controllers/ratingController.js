@@ -1,7 +1,5 @@
 const User = require("../models/userModel");
 const Rating = require("../models/ratingModel");
-const { extractDesiredFields } = require("../util/movieUtils");
-const axios = require("axios");
 
 module.exports = {
     async adicionarAvaliacao(req, res) {
@@ -17,7 +15,7 @@ module.exports = {
           if (checkRating)
             return res.status(409).json({ message: "Não é possível adicionar uma nova avaliação" })
     
-          const newRating = await user.createRating({ movie_id, rating });
+          await user.createRating({ movie_id, rating });
     
           res.status(200).json({
             message: `Avaliação adicionada com sucesso!`,
