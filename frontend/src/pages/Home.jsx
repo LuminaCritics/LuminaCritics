@@ -48,14 +48,14 @@ export default function Home () {
 
     return (
         <DefaultLayout>
-            <Carousel movies = {carousel} title = "Carousel"/>
+            <Carousel movies = {carousel} title = ""/>
 
             <ContainerOfMovies movies = {container} title = "Filmes Populares" />
 
-            <div class = "grid grid-cols-2 md:grid-cols-4 pt-20">
+            <div className = "flex-none justify-center items-center grid grid-cols-2 md:grid-cols-4 pt-20">
                 <ListOfMovies movies = {firstList} title = "Aventura"/>
                 <ListOfMovies movies = {secondList} title = "Ação"/>
-                <ListOfMovies movies = {thirdList} title = "No Espaço"/>
+                <ListOfMovies movies = {thirdList} title = "Espaço"/>
                 <ListOfMovies movies = {fourtyList} title = "Espiões"/>
             </div>
         </DefaultLayout>
