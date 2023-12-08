@@ -22,7 +22,7 @@ export default function Login () {
           });
 
         validation.validate (data).then (()=>{
-            Axios.post ("http://localhost:5000/luminacritics/users/login", data)
+            Axios.post ("https://backend-31dy.onrender.com/luminacritics/users/login", data)
             .then((response)=>{
                 swal({
                     title: "Sucesso!",
@@ -56,7 +56,7 @@ export default function Login () {
     }
 
     return (
-        <div class = "relative">
+        <div className = "relative">
             <StardewBackground />
             <form method = "POST" onSubmit={Login}>
         <FormCard title = "Login" description = "Aqui você entra num universo de filmes !" submitValue="Login" 
