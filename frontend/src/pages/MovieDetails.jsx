@@ -1,13 +1,18 @@
 import DefaultLayout from "../layouts/DefaultLayout";
 import {useEffect, useState} from "react";
+import Cookies from "js-cookie";
+import swal from 'sweetalert';
 import MontarAxiosAPI from "../utils/axios";
+
 export default function MovieDetails () {
-    const Axios = MontarAxiosAPI()
+    const Axios = MontarAxiosAPI();
     const [movie, setMovie] = useState ({});
     const [genres, setGenres] = useState ([]);
-    const [stars, setStars] = useState (0);
-    const [comments, setComments] = useState ([]);
+    //const [stars, setStars] = useState (0);
+    //const [comments, setComments] = useState ([]);
     const star = <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+    //const [rating, setRating] = useState([]);
+    const [ratingValue, setRatingValue] = useState (0);
 
     useEffect (() => {
         var url = window.location.href;
@@ -18,12 +23,50 @@ export default function MovieDetails () {
         .then ((response) => {
             setMovie (response.data);
             setGenres (response.data.genres);
-            let i = response.data.popularity;
-            i = i * 0.005;
-            i = Math.trunc (i);
-            setStars (i);
+        });
+
+        Axios.get (`/avaliar/item/${id}/avaliacoes`)
+        .then ((response) => {
+            if (response.data.length === 0) {
+                setRatingValue(1);
+            } else {
+              let ratingValue = 0;
+            for (let i = 0; i < response.data.length; i++) {
+              
+              ratingValue += response.data[i].rating;
+            }
+            setRatingValue (Math.trunc(ratingValue / response.data.length));
+          }
         });
     }, []);
+
+    function Rating (e) {
+      e.preventDefault();
+      let user = Cookies.get ('userToken');
+      user = JSON.parse (user);
+      var url = window.location.href;
+        var urlObj = new URL(url);
+        var id = urlObj.searchParams.get("id");
+
+      let i = document.querySelector('input[type="number"]').value;
+
+      Axios.request({
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        },
+        method: "POST",
+        url: `/avaliar/${user.user.id}/item/${id}/${i}`
+      }).then(()=> {
+        swal({
+          title: "Sucesso!",
+          text: "Avaliado !",
+          icon: "success",
+          button: "Ok!",
+        }).then (()=> {
+          window.location.reload();
+        })
+      });
+    }
 
      return (
         <DefaultLayout>
@@ -37,13 +80,13 @@ export default function MovieDetails () {
         <p className="btn btn-primary mx-2" key = {key}> {genres.name} </p>
       ))}
       <div className="rating">
-      {[...Array(stars)].map((_, index) => (
+      {[...Array(ratingValue)].map((_, index) => (
         <div key={index}>{star}</div>
       ))}
     </div>
-    <form>
-        <input type="text" placeholder=" Seu Comentário" className="input input-bordered w-full max-w-xs mt-14" />
-        <input type="submit" value = "Comentar" className="btn btn-success w-full max-w-xs mx-2" />
+    <form method="post" onSubmit={Rating}>
+        <input type="number" max={5} min={1} placeholder="Sua Avaliação" className="input input-bordered w-20 max-w-xs mt-14" />
+        <input type="submit" value = "Avaliar" className="btn btn-success w-full max-w-xs mx-2" />
     </form>
     </div>
   </div>
