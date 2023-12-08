@@ -105,7 +105,7 @@ module.exports = {
       };
 
       const token = jwt.sign(
-        { userId: user.id, email: user.email },
+        { id: user.id, email: user.email },
         process.env.SECRET
       );
 
