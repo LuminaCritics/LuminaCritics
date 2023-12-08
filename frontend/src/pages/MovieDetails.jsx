@@ -1,9 +1,8 @@
 import DefaultLayout from "../layouts/DefaultLayout";
 import {useEffect, useState} from "react";
-import Axios from "axios";
-
+import MontarAxiosAPI from "../utils/axios";
 export default function MovieDetails () {
-
+    const Axios = MontarAxiosAPI()
     const [movie, setMovie] = useState ({});
     const [genres, setGenres] = useState ([]);
     const [stars, setStars] = useState (0);
@@ -15,7 +14,7 @@ export default function MovieDetails () {
         var urlObj = new URL(url);
         var id = urlObj.searchParams.get("id");
 
-        Axios.get (`https://backend-31dy.onrender.com/luminacritics/filmes/${id}/details`)
+        Axios.get (`/filmes/${id}/details`)
         .then ((response) => {
             setMovie (response.data);
             setGenres (response.data.genres);
