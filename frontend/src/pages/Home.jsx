@@ -15,32 +15,32 @@ export default function Home () {
     const [fourtyList , setFourtyList] = useState ([]);
 
     useEffect (()=> {
-        Axios.get("http://localhost:5000/luminacritics/filmes/trending")
+        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/trending")
         .then ((response) => {
             setCarousel (response.data);
         });
 
-        Axios.get("http://localhost:5000/luminacritics/filmes/popular")
+        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/popular")
         .then ((response) => {
             setContainer (response.data);
         });
 
-        Axios.get("http://localhost:5000/luminacritics/filmes/buscar/aventura")
+        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/aventura")
         .then ((response) => {
             setFirstList (response.data);
         });
 
-        Axios.get("http://localhost:5000/luminacritics/filmes/buscar/dragon")
+        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/dragon")
         .then ((response) => {
             setSecondList (response.data);
         });
 
-        Axios.get("http://localhost:5000/luminacritics/filmes/buscar/espaco")
+        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/espaco")
         .then ((response) => {
             setThirdList (response.data);
         });
 
-        Axios.get("http://localhost:5000/luminacritics/filmes/buscar/espiao")
+        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/espiao")
         .then ((response) => {
             setFourtyList (response.data);
         });
