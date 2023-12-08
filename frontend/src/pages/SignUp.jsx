@@ -7,25 +7,26 @@ import StardewBackground from "../components/StardewBackground";
 import {Link, Navigate} from "react-router-dom";
 import Cookies from "js-cookie";
 
-export default function Login () {
+export default function SignUp () {
 
-
-    async function Login (event) {
+    async function SignUp (event) {
         event.preventDefault ();
 
         let data = {
+            name: document.querySelector ("#name").value,
             email: document.querySelector ("#email").value, 
             password: document.querySelector ("#password").value
         }
 
         let validation = Yup.object ().shape ({
+            name: Yup.string().required().min(2),
             email: Yup.string().email().required(),
             password: Yup.string().required().min(8)
           });
 
         validation.validate (data).then (()=>{
-            Axios.post ("https://backend-31dy.onrender.com/luminacritics/users/login", data)
-            .then((response)=>{
+            Axios.post ("https://backend-31dy.onrender.com/luminacritics/users/create", data)
+            .then(()=>{
                 swal({
                     title: "Sucesso!",
                     text: "Aproveite a viagem!",
@@ -33,8 +34,7 @@ export default function Login () {
                     button: "Ok!",
                   })
                   .then(()=>{
-                    Cookies.set ("userToken" , JSON.stringify (response.data), {expires : 1});
-                    window.location = "/";
+                    window.location = "/login";
                   });
             })
             .catch(()=>{
@@ -58,11 +58,12 @@ export default function Login () {
     }
 
     return (
-        <div className = "relative">
+        <div>
             <StardewBackground />
-            <form method = "POST" onSubmit={Login}>
-        <FormCard title = "Login" description = "Aqui você entra num universo de filmes !" submitValue="Login" 
-        href = "/signup" hrefText = "Cadastro" hrefTwo="#" hrefTwoText= "Recuperar Senha">
+            <form method = "POST" onSubmit={SignUp}>
+        <FormCard title = "Cadastro" description = "Abordo desta nave você irá descobrir novas galáxias de filmes !" submitValue="Cadastrar" 
+        href = "/login" hrefText = "Login" hrefTwo="#" hrefTwoText= "Recuperar Senha">
+            <InputForm title = "Nome" type = "text" id = "name"/>
             <InputForm title = "Email" type = "email" id = "email"/>
             <InputForm title = "Senha" type = "password" id = "password"/>
         </FormCard>

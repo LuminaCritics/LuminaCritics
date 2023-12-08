@@ -8,6 +8,12 @@ export default function Header () {
         window.location.href = `/search?id=${search}`;
     }
 
+    function Logout (e) {
+      e.preventDefault(e);
+      Cookies.remove ("userToken");
+      window.location.href = "/";
+    }
+
     return (
       <div className=" z-10 drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -40,7 +46,7 @@ export default function Header () {
                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                   <li><a href="/login" id = "login">Login</a></li>
                   <li><a>Configurações</a></li>
-                  <li id = "signout"><a href="/login">Sair</a></li>
+                  <button onClick={Logout} class="btn">Logout</button>
                 </ul>
               </div>
             </div>

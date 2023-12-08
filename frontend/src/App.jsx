@@ -6,6 +6,7 @@ import Privacy from "./pages/Privacy";
 import About from "./pages/About";
 import MovieDetails from "./pages/MovieDetails";
 import SearchMovies from "./pages/SearchMovie";
+import SignUp from "./pages/SignUp";
 
 export default function App() {
 
@@ -14,6 +15,7 @@ export default function App() {
       <Routes>
         <Route path = "/" element = {<Home />}/>
         <Route path = "/login" element = {<Login />}/>
+        <Route path = "/signup" element = {<SignUp />}/>
         <Route path = "/contacts" element = {<Contacts />}/>
         <Route path = "/privacy" element = {<Privacy />}/>
         <Route path = "/about" element = {<About />}/>
