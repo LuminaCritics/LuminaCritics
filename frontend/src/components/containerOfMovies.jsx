@@ -6,7 +6,7 @@ export default function ContainerOfMovies ({movies , title}) {
             {
                 movies.map ((movies , key) => (
                     
-                    <a href = {`http://localhost:4321/viewMovie/?id=${movies.id}`} key = {key}>
+                    <a href = {`/viewMovie?id=${movies.id}`} key = {key}>
                         <div className="card w- bg-base-100 shadow-xl flex mt-20 justify-center">
                             <figure ><img src = {"https://image.tmdb.org/t/p/original" + movies.poster_path} className = "hover:scale-125 transition duration-500 cursor-pointer" alt = {movies.title} width = "150px" height = "150px"/></figure>
                             <div className="card-body flex justify-center items-center">
