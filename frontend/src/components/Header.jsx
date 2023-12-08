@@ -1,6 +1,12 @@
 export default function Header () {
+
+    function Search () {
+        let search = document.getElementById ("busca").value;
+        window.location.href = `/search/?id=${search}`;
+    }
+
     return (
-        <header class = "bg-black w-screen z-50 fixed">
+            <header class = "bg-black w-screen z-50 fixed">
         <div class="navbar bg-black">
             <div class="navbar-start">
               <a class="btn btn-ghost normal-case invisible sm:visible sm:text-xl  md:text-2xl" href = "/"> Lumina Critics </a>
@@ -21,7 +27,9 @@ export default function Header () {
               </ul>
             </div>
             <div class="navbar-end">
-              <input type="text" placeholder = " Buscar " class="input input-bordered w-24 md:w-auto" />
+                <form method = "POST" onSubmit={Search}>
+                <input type="text" placeholder = " Buscar " class="input input-bordered w-24 md:w-auto" id = "busca"/>
+                </form>
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar mr-10">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 stroke-white">
