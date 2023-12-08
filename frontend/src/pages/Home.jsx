@@ -28,4 +28,5 @@ export default function Home () {
             <ContainerOfMovies movies = {container} title = "Filmes Populares" />
         </DefaultLayout>
     );
-}
+  }
+  
