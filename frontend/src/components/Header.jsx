@@ -16,7 +16,7 @@ export default function Header () {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </label>
           </div>
-          <h1 className="flex-1 px-2 mx-2 text-2xl font-semibold">Luminacritics</h1>
+          <a className="flex-1 px-2 mx-2 text-2xl font-semibold" href="/">Luminacritics</a>
           <div className="hidden lg:block">
             <div className="flex flex-row items-center gap-2">
               <form className="form-control">

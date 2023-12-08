@@ -6,7 +6,7 @@ export default function ListOfMovies ({movies, title}) {
             <div className="h-96 carousel carousel-vertical rounded-box ml-7">
                 {
                     movies.map ((movies , key) => (
-                       <a href = "#"><img key = {key} src = {"https://image.tmdb.org/t/p/original" + movies.poster_path} className = "carousel-item" width = "300px" height = "300px" /></a>
+                       <a href = {`/viewMovie?id=${movies.id}`} ><img key = {key} src = {"https://image.tmdb.org/t/p/original" + movies.poster_path} className = "carousel-item" width = "300px" height = "300px" /></a>
                     ))
                 }
             </div>

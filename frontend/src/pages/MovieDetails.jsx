@@ -42,8 +42,10 @@ export default function MovieDetails () {
         <div key={index}>{star}</div>
       ))}
     </div>
-    <input type="text" placeholder=" Seu Comentário" className="input input-bordered w-full max-w-xs mt-14" />
-
+    <form>
+        <input type="text" placeholder=" Seu Comentário" className="input input-bordered w-full max-w-xs mt-14" />
+        <input type="submit" value = "Comentar" className="btn btn-success w-full max-w-xs mx-2" />
+    </form>
     </div>
   </div>
 </div>

@@ -48,7 +48,7 @@ export default function Home () {
 
     return (
         <DefaultLayout>
-            <Carousel movies = {carousel} title = "Carousel"/>
+            <Carousel movies = {carousel} title = "Carousel de filmes bons"/>
 
             <ContainerOfMovies movies = {container} title = "Filmes Populares" />
 
