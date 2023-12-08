@@ -7,8 +7,9 @@ import StardewBackground from "../components/StardewBackground";
 import {Link, Navigate} from "react-router-dom";
 import Cookies from "js-cookie";
 
-export default function Login () {
+export default function Login ({user}) {
 
+    if (!user){
 
     async function Login (event) {
         event.preventDefault ();
@@ -26,6 +27,7 @@ export default function Login () {
         validation.validate (data).then (()=>{
             Axios.post ("https://backend-31dy.onrender.com/luminacritics/users/login", data)
             .then((response)=>{
+                Cookies.set ("userToken" , JSON.stringify (response.data), {expires : 1});
                 swal({
                     title: "Sucesso!",
                     text: "Aproveite a viagem!",
@@ -33,7 +35,6 @@ export default function Login () {
                     button: "Ok!",
                   })
                   .then(()=>{
-                    Cookies.set ("userToken" , JSON.stringify (response.data), {expires : 1});
                     window.location = "/";
                   });
             })
@@ -68,5 +69,8 @@ export default function Login () {
         </FormCard>
         </form>
         </div>
-    );
+    );}
+    else {
+        return <Navigate to = "/" replace/>;
+      }
 }
