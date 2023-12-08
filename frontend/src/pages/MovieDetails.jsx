@@ -15,7 +15,7 @@ export default function MovieDetails () {
         var urlObj = new URL(url);
         var id = urlObj.searchParams.get("id");
 
-        Axios.get (`http://localhost:5000/luminacritics/filmes/${id}/details`)
+        Axios.get (`https://backend-31dy.onrender.com/luminacritics/filmes/${id}/details`)
         .then ((response) => {
             setMovie (response.data);
             setGenres (response.data.genres);
