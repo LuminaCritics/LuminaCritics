@@ -1,4 +1,4 @@
-import FormCard from "../components/formComponents/formCard";
+import FormCard from "../components/formComponents/FormCard";
 import InputForm from "../components/formComponents/InputForm";
 import Axios from "axios";
 import * as Yup from "yup";
