@@ -1,6 +1,17 @@
 import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 export default function Header () {
+
+  useEffect (()=> {
+    let user = Cookies.get ("userToken");
+
+  if (user) {
+    document.getElementById ("login").style.display = "none";
+  } else {
+    document.getElementById ("logout").style.display = "none";
+  }
+  }, []);
 
     function Search (e) {
         e.preventDefault(e);
@@ -44,9 +55,8 @@ export default function Header () {
                 </svg>                  </div>
                 </div>
                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                  <li><a href="/login" id = "login">Login</a></li>
-                  <li><a>Configurações</a></li>
-                  <button onClick={Logout} class="btn">Logout</button>
+                  <li id = "login"><a href="/login" id = "login">Login</a></li>
+                  <button onClick={Logout} class="btn" id="logout">Logout</button>
                 </ul>
               </div>
             </div>

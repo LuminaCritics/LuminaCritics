@@ -6,8 +6,11 @@ import StardewBackground from "../components/StardewBackground";
 import {Link, Navigate} from "react-router-dom";
 import Cookies from "js-cookie";
 import MontarAxiosAPI from '../utils/axios'
-export default function SignUp () {
+
+
+export default function SignUp ({user}) {
     const Axios = MontarAxiosAPI()
+    if (!user) {
     async function SignUp (event) {
         event.preventDefault ();
 
@@ -68,5 +71,7 @@ export default function SignUp () {
         </FormCard>
         </form>
         </div>
-    );
+    );}else {
+        return <Navigate to = "/" replace/>;
+      }
 }
