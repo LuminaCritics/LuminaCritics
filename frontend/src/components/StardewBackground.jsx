@@ -3,9 +3,9 @@ import { BbStarTrail } from 'beautiful-backgrounds';
 export default function StardewBackground () {
 
     return (
-        <div class = "max-w-full max-h-screen overflow-hidden absolute inset-0">
+        <div class = "max-w-full max-h-screen overflow-hidden absolute inset-0 fixed">
             <bb-star-trail
-        data-num-stars="1000"
+        data-num-stars="800"
         data-star-size-min="0.1"
         data-star-size-max="3"
         data-star-speed-min="0.001"
@@ -17,7 +17,7 @@ export default function StardewBackground () {
         data-star-color-lightness-start="20"
         data-star-color-lightness-end="80"
         data-orbit-radius-min="100"
-        data-orbit-radius-max="100000"
+        data-orbit-radius-max="1000"
         data-star-lifespan-min="1000"
         data-star-lifespan-max="50000"
         data-width="2000"

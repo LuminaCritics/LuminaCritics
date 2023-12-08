@@ -1,0 +1,23 @@
+/* styles.css */
+
+/* Adicione as classes do Tailwind para personalizar o estilo do alerta */
+.swal-overlay {
+    background-color: rgba(96, 96, 96, 0.5); /* Cor de fundo do overlay */
+  }
+  
+  .swal-modal {
+    background-color: #000000; /* Cor de fundo do modal */
+    color: #ffffff; /* Cor do texto */
+  }
+  
+  .swal-title {
+    color: #ffffff; /* Cor do título */
+  }
+
+  .swal-text {
+    color: #ffffff; /* Cor do título */
+  }
+  
+  .swal-button {
+    background-color: #ffffff; /* Cor de fundo do botão */
+  }
