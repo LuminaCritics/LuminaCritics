@@ -6,6 +6,7 @@ import Contacts from "./pages/Contacts";
 import Privacy from "./pages/Privacy";
 import About from "./pages/About";
 import MovieDetails from "./pages/MovieDetails";
+import SearchMovies from "./pages/SearchMovie";
 
 export default function App() {
 
@@ -19,6 +20,7 @@ export default function App() {
         <Route path = "/privacy" element = {<Privacy />}/>
         <Route path = "/about" element = {<About />}/>
         <Route path = "/viewMovie" element = {<MovieDetails />}/>
+        <Route path = "/search" element = {<SearchMovies />}/>
       </Routes>
     </BrowserRouter>
   )
