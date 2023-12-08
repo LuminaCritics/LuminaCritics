@@ -3,6 +3,7 @@ import InputForm from "../components/formComponents/InputForm";
 import Axios from "axios";
 import * as Yup from "yup";
 import Cookies from "js-cookie";
+import JSAlert from 'js-alert'
 
 export default function Login () {
 
@@ -26,11 +27,11 @@ export default function Login () {
                 window.location = "/";
             })
             .catch(()=>{
-                console.log ("erro");
+                JSAlert.alert("Nome do usuário ou senha incorreto. Tente novamente.").dismissIn(1000 * 3);
             })
         })
         .catch (()=>{
-            console.log ("erro");
+            JSAlert.alert("Insira suas credencias!").dismissIn(1000 * 3);
         });
 
     }
