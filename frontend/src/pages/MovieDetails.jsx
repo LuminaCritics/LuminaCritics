@@ -8,13 +8,14 @@ export default function MovieDetails () {
     const Axios = MontarAxiosAPI();
     const [movie, setMovie] = useState ({});
     const [genres, setGenres] = useState ([]);
-    const [comments, setComments] = useState()
+    const [comments, setComments] = useState();
+    const [newComment, setNewComment] = useState("");
     //const [stars, setStars] = useState (0);
     //const [comments, setComments] = useState ([]);
     const star = <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
     //const [rating, setRating] = useState([]);
     const [ratingValue, setRatingValue] = useState (0);
-
+    const cookie = Cookies.get("userToken"); 
     useEffect (() => {
         var url = window.location.href;
         var urlObj = new URL(url);
@@ -39,10 +40,28 @@ export default function MovieDetails () {
             setRatingValue (Math.trunc(ratingValue / response.data.length));
           }
         });
-      
+        Axios.get (`/comentario/all/${id}`)
+        .then ((response) => {
+          console.log(response.data)
+          setComments (response.data)
+          console.log(comments)
+        });
+        
         
     }, []);
 
+    // const getUser = (id)=>{
+    //   Axios.get (`/users/${id}`,{
+    //     headers: {
+    //       'Authorization': `Bearer ${JSON.parse(cookie).userToken}`, // Configura o cookie no cabeçalho
+    //     },
+    //   })
+    //     .then ((response) => {
+    //       console.log(response.data)
+    //       // return response.data.
+    //     });
+    //     return
+    // }
     function Rating (e) {
       e.preventDefault();
       let user = Cookies.get ('userToken');
@@ -87,11 +106,29 @@ export default function MovieDetails () {
         <div key={index}>{star}</div>
       ))}
     </div>
-    <form method="post" onSubmit={Rating}>
+    <form method="post" onSubmit={Rating} className="mb-10">
         <input type="number" max={5} min={1} placeholder="Sua Avaliação" className="input input-bordered w-20 max-w-xs mt-14" />
         <input type="submit" value = "Avaliar" className="btn btn-success w-full max-w-xs mx-2" />
     </form>
-  
+    <textarea
+              className="w-full p-2 mb-2 text-white"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Adicione um comentário..."
+            />
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded mb-10"
+            >
+              Enviar
+        </button>
+    {comments ? comments.map((commentObj, index) => (
+  <div className="flex flex-row" key={commentObj.id}> {/* Usar o id do comentário como chave */}
+    <p className="text-yellow-200 mr-2"> {index + 1}:</p>
+    <div className="text-white mb-2">
+      {commentObj.comment}
+    </div>
+  </div>
+)) : null}
     </div>
   </div>
 </div>
