@@ -35,6 +35,18 @@ function ViewMovie() {
         setMovie(res.data);
         console.log(movie);
       });
+      Axios
+      .get(
+        `/comentario/all/${movieId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${JSON.parse(cookie).userToken}`, // Configura o cookie no cabeçalho
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
   }, []);
 
   //   console.log(movie);

@@ -13,7 +13,7 @@ export default function ContainerOfMovies ({movies , title}) {
     }
 
     return (
-        <div className = "grid grid-cols-2 gap-2 md:grid-cols-4 z-10 pt-52">
+        <div className = "grid grid-cols-2 gap-2 md:grid-cols-4 z-10 pt-10">
             <p className = "w-full text-2xl text-center font-bold absolute"> {title} </p>
             {
                 movies.map ((movies , key) => (

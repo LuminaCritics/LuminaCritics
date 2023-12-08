@@ -8,6 +8,7 @@ export default function MovieDetails () {
     const Axios = MontarAxiosAPI();
     const [movie, setMovie] = useState ({});
     const [genres, setGenres] = useState ([]);
+    const [comments, setComments] = useState()
     //const [stars, setStars] = useState (0);
     //const [comments, setComments] = useState ([]);
     const star = <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
@@ -38,6 +39,8 @@ export default function MovieDetails () {
             setRatingValue (Math.trunc(ratingValue / response.data.length));
           }
         });
+      
+        
     }, []);
 
     function Rating (e) {
@@ -88,6 +91,7 @@ export default function MovieDetails () {
         <input type="number" max={5} min={1} placeholder="Sua Avaliação" className="input input-bordered w-20 max-w-xs mt-14" />
         <input type="submit" value = "Avaliar" className="btn btn-success w-full max-w-xs mx-2" />
     </form>
+  
     </div>
   </div>
 </div>
