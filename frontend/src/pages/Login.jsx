@@ -3,6 +3,7 @@ import InputForm from "../components/formComponents/InputForm";
 import Axios from "axios";
 import * as Yup from "yup";
 import Cookies from "js-cookie";
+import Alert from 'universal-alert';
 
 export default function Login () {
 
@@ -26,11 +27,23 @@ export default function Login () {
                 window.location = "/";
             })
             .catch(()=>{
-                console.log ("erro");
+                Alert({
+                    title: 'alert title',
+                    content: 'alert content',
+                    buttonText: 'button text，default value is confirm'
+                  }).then(() => {
+                    console.log('confirm');
+                  });
             })
         })
         .catch (()=>{
-            console.log ("erro");
+            Alert({
+                title: 'alert title',
+                content: 'alert content',
+                buttonText: 'button text，default value is confirm'
+              }).then(() => {
+                console.log('confirm');
+              });
         });
 
     }
@@ -38,7 +51,7 @@ export default function Login () {
     return (
         <form method = "POST" onSubmit={Login}>
         <FormCard title = "Login" description = "Aqui você entra num universo de filmes !" submitValue="Login" 
-        href = "#" hrefText = "Cadastro" hrefTwo="#" hrefTwoText= "Recuperar Senha">
+        href = "/signup" hrefText = "Cadastro" hrefTwo="#" hrefTwoText= "Recuperar Senha">
             <InputForm title = "Email" type = "email" id = "email"/>
             <InputForm title = "Senha" type = "password" id = "password"/>
         </FormCard>
