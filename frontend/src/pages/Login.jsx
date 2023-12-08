@@ -3,7 +3,11 @@ import InputForm from "../components/formComponents/InputForm";
 import Axios from "axios";
 import * as Yup from "yup";
 import Cookies from "js-cookie";
+<<<<<<< HEAD
+import JSAlert from 'js-alert'
+=======
 import Alert from 'universal-alert';
+>>>>>>> 4ce760a7f836fa364ba357c1a22ba21cf7fe2d33
 
 export default function Login () {
 
@@ -27,6 +31,13 @@ export default function Login () {
                 window.location = "/";
             })
             .catch(()=>{
+<<<<<<< HEAD
+                JSAlert.alert("Nome do usuário ou senha incorreto. Tente novamente.").dismissIn(1000 * 3);
+            })
+        })
+        .catch (()=>{
+            JSAlert.alert("Insira suas credencias!").dismissIn(1000 * 3);
+=======
                 Alert({
                     title: 'alert title',
                     content: 'alert content',
@@ -44,6 +55,7 @@ export default function Login () {
               }).then(() => {
                 console.log('confirm');
               });
+>>>>>>> 4ce760a7f836fa364ba357c1a22ba21cf7fe2d33
         });
 
     }
