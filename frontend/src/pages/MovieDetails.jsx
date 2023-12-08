@@ -15,12 +15,12 @@ export default function MovieDetails () {
     const star = <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
     //const [rating, setRating] = useState([]);
     const [ratingValue, setRatingValue] = useState (0);
-    const cookie = Cookies.get("userToken"); 
-    useEffect (() => {
-        var url = window.location.href;
+    const cookie = Cookies.get("userToken");
+     console.log(cookie)
+    var url = window.location.href;
         var urlObj = new URL(url);
-        var id = urlObj.searchParams.get("id");
-
+    var id = urlObj.searchParams.get("id");
+    useEffect (() => {
         Axios.get (`/filmes/${id}/details`)
         .then ((response) => {
             setMovie (response.data);
@@ -46,15 +46,24 @@ export default function MovieDetails () {
           setComments (response.data)
           console.log(comments)
         });
+  
         
         
     }, []);
+    const handleCommentSubmit = () =>{
 
+      Axios.request({
+        headers: {
+          Authorization: `Bearer ${cookie.token}`
+        },
+        method: "POST",
+        url: `/comentario/${cookie['user'].id}/comentar/${id}`
+      },{
+        "comment": newComment
+      }).then().catch(()=>alert('Error'))
+    }
     // const getUser = (id)=>{
     //   Axios.get (`/users/${id}`,{
-    //     headers: {
-    //       'Authorization': `Bearer ${JSON.parse(cookie).userToken}`, // Configura o cookie no cabeçalho
-    //     },
     //   })
     //     .then ((response) => {
     //       console.log(response.data)
@@ -118,6 +127,7 @@ export default function MovieDetails () {
             />
             <button
               className="bg-red-500 text-white px-4 py-2 rounded mb-10"
+              onClick = {()=>handleCommentSubmit()}
             >
               Enviar
         </button>
