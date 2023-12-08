@@ -23,7 +23,7 @@ export default function SignUp () {
           });
 
         validation.validate (data).then (()=>{
-            Axios.post ("http://localhost:5000/luminacritics/users/create", data)
+            Axios.post ("https://backend-31dy.onrender.com/luminacritics/users/create", data)
             .then(()=>{
                 swal({
                     title: "Sucesso!",
