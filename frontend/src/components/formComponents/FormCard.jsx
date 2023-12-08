@@ -8,7 +8,6 @@ export default function FormCard({title, description, href, hrefText, hrefTwo, h
 	  </div>
 	  <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl border-2 border-white rounded-3xl bg-black">
 			<div className="card-body">
-				<form method="POST">
 					{children}
 					<label className="label">
 						<a href={href} className="label-text-alt link link-hover"> {hrefText} </a>
@@ -17,7 +16,6 @@ export default function FormCard({title, description, href, hrefText, hrefTwo, h
 					<div className="form-control mt-6">
 						<input type = "submit" value = {submitValue} className="btn btn-primary" id = "button"/>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
