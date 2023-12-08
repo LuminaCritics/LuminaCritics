@@ -24,15 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./src/models/mainModel");
 
-// https://sequelize.org/docs/v6/core-concepts/model-basics/#synchronization-in-production
-/*db.sequelize
+db.sequelize
   .sync()
   .then(() => {
     console.log("Sincronizando db");
   })
   .catch((err) => {
     console.log("Falha para reconhecer o db: " + err.message);
-  });*/
+  });
 
 //Rotas
 app.use("/luminacritics", Routes);
