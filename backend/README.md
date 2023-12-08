@@ -63,31 +63,39 @@ http://localhost:5000/luminacritics/users
 - Para adicionar um comentário:
 
 ```bash
-http://localhost:5000/luminacritics/comentario/:userId/comentar/:movie_id/:comment
+POST http://localhost:5000/luminacritics/comentario/<userId>/comentar/<movie_id>
+
+{
+    "comment": "adicione um comentário"
+}
 ```
 
 - Para buscar todos os comentários de um usuário:
 
 ```bash
-http://localhost:5000/luminacritics/comentario/:userId/comentarios
+GET http://localhost:5000/luminacritics/comentario/:userId/comentarios
 ```
 
 - Para buscar os comentários de um usuário em um filme:
 
 ```bash
-http://localhost:5000/luminacritics/comentario/:userId/comentarios/:movie_id
+GET http://localhost:5000/luminacritics/comentario/:userId/comentarios/:movie_id
 ```
 
 - Para retornar todos os comentários de um filme:
 
 ```bash
-http://localhost:5000/luminacritics/comentario/all/:movie_id
+GET http://localhost:5000/luminacritics/comentario/all/:movie_id
 ```
 
 - Para editar um comentário:
 
 ```bash
-http://localhost:5000/luminacritics/comentario/:userId/comentar/editar/:commentId/:comment
+PUT http://localhost:5000/luminacritics/comentario/:userId/comentar/editar/:commentId
+
+{
+    "comment": "adicione um comentário"
+}
 ```
 
 - Para deletar um comentário:
