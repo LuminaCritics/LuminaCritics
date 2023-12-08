@@ -1,3 +1,22 @@
 ---
+import PageLayout from "../layouts/pageLayout.astro";
+import StardewBackground from "../components/pageComponents/stardewBackground.astro";
+import MovieDetails from "../components/dynamicComponents/movieDatails";
 
+const url = '';
+
+const getDetails = await fetch (`http://localhost:5000/luminacritics/filmes/${url}/details`);
+const detailsData = await getDetails.json ();
 ---
+
+<PageLayout title = "Visualizar Filme">
+
+    <StardewBackground />
+
+    <MovieDetails movie = {detailsData} />
+
+    <script>
+
+    </script>
+    
+</PageLayout>

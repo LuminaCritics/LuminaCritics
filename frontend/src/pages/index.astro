@@ -5,23 +5,23 @@ import Carousel from "../components/dynamicComponents/carousel.jsx";
 import ListOfMovies from "../components/dynamicComponents/listOfMovies.jsx";
 import ContainerOfMovies from '../components/dynamicComponents/containerOfMovies.jsx';
 
-const containerResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen");
-const containerData = await containerResponse.json ();
-
-const carouselResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen?page=3");
+const carouselResponse = await fetch ("http://localhost:5000/luminacritics/filmes/popular");
 const carouselData = await carouselResponse.json ();
 
-const listOneResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shoujo");
-const listOneData = await listOneResponse.json ();
+const containerTrendingResponse = await fetch ("http://localhost:5000/luminacritics/filmes/trending");
+const containerTrendingData = await containerTrendingResponse.json ();
 
-const listTwoResponse = await fetch ("https://api.consumet.org/meta/anilist-manga/shounen");
-const listTwoData = await listTwoResponse.json ();
+const containerAdventureResponse = await fetch ("http://localhost:5000/luminacritics/filmes/buscar/aventura");
+const containerAdventureData = await containerAdventureResponse.json ();
 
-const listThreeResponse = await fetch ("https://api.consumet.org/anime/gogoanime/shounen");
-const listThreeData = await listThreeResponse.json ();
+const containerActionResponse = await fetch ("http://localhost:5000/luminacritics/filmes/buscar/dragon");
+const containerActionData = await containerActionResponse.json ();
 
-const listFourResponse = await fetch ("https://api.consumet.org/anime/gogoanime/adventure");
-const listFourData = await listFourResponse.json ();
+const containerSpaceResponse = await fetch ("http://localhost:5000/luminacritics/filmes/buscar/espaco");
+const containerSpaceData = await containerSpaceResponse.json ();
+
+const containerSpyResponse = await fetch ("http://localhost:5000/luminacritics/filmes/buscar/espiao");
+const containerSpyData = await containerSpyResponse.json ();
 
 ---
 
@@ -29,15 +29,15 @@ const listFourData = await listFourResponse.json ();
 
 	<StardewBackground />
 
-	<Carousel movies = {carouselData.results} title = {"novidades"} />
+	<Carousel movies = {carouselData} title = {"novidades"} />
 
-	<ContainerOfMovies client:only="react" movies = {containerData.results}/>
+	<ContainerOfMovies client:only="react" movies = {containerTrendingData} title = {"Filmes, Séries e mais"}/>
 
-	<div class = "grid grid-cols-4">
-		<ListOfMovies client:only="react" movies = {listOneData.results} title = "shoujo"/>
-		<ListOfMovies client:only="react" movies = {listTwoData.results} title = "manga"/>
-		<ListOfMovies client:only="react" movies = {listThreeData.results} title = "shounen"/>
-		<ListOfMovies client:only="react" movies = {listFourData.results} title = "adventure"/>
+	<div class = "grid grid-cols-2 md:grid-cols-4 pt-20">
+		<ListOfMovies client:only="react" movies = {containerAdventureData} title = "Aventura"/>
+		<ListOfMovies client:only="react" movies = {containerActionData} title = "Ação"/>
+		<ListOfMovies client:only="react" movies = {containerSpaceData} title = "No Espaço"/>
+		<ListOfMovies client:only="react" movies = {containerSpyData} title = "Espiões"/>
 	</div>
 
 </Layout>

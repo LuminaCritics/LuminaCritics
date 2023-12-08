@@ -6,7 +6,7 @@ export default function Carousel ({movies, title}) {
                 {
                     movies.map ((movies , key) => (
                         <div class="carousel-item" key = {key} >
-                            <img src = {movies.image} width = "150px" height = "150px" alt = {movies.id} />
+                            <img src = {"https://image.tmdb.org/t/p/original" + movies.poster_path} width = "300px" height = "300px" alt = {movies.id} />
                         </div>
                     ))
                 }
