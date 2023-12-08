@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 export default function DefaultLayout ({children}) {
     return (
-        <div>
+        <div className="flex flex-col items-center">
             <Header />
             {children}
             <Footer />
