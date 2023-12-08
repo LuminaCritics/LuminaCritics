@@ -59,3 +59,63 @@ http://localhost:5000/luminacritics/users/<id>
 ```bash
 http://localhost:5000/luminacritics/users
 ```
+
+- Para adicionar um comentário:
+
+```bash
+http://localhost:5000/luminacritics/comentario/:userId/comentar/:movie_id/:comment
+```
+
+- Para buscar todos os comentários de um usuário:
+
+```bash
+http://localhost:5000/luminacritics/comentario/:userId/comentarios
+```
+
+- Para buscar os comentários de um usuário em um filme:
+
+```bash
+http://localhost:5000/luminacritics/comentario/:userId/comentarios/:movie_id
+```
+
+- Para retornar todos os comentários de um filme:
+
+```bash
+http://localhost:5000/luminacritics/comentario/all/:movie_id
+```
+
+- Para editar um comentário:
+
+```bash
+http://localhost:5000/luminacritics/comentario/:userId/comentar/editar/:commentId/:comment
+```
+
+- Para deletar um comentário:
+
+```bash
+http://localhost:5000/luminacritics/comentario/:userId/comentar/deletar/:commentId
+```
+
+- Para adicionar a avaliação ao filme (cada usuário possuí apenas uma avaliação por filme):
+
+```bash
+http://localhost:5000/luminacritics/avaliar/:userId/item/:movie_id/:rating
+```
+
+- Para retornar a avaliação feita pelo usuário ao filme:
+
+```bash
+http://localhost:5000/luminacritics/avaliar/:userId/item/:movie_id/avaliacao
+```
+
+- Para retornar todas as avaliações de um filme:
+
+```bash
+http://localhost:5000/luminacritics/avaliar/item/:movie_id/avaliacoes
+```
+
+- Para editar a avaliação de algum filme:
+
+```bash
+http://localhost:5000/luminacritics/avaliar/:userId/item/:movie_id/avaliacao/editar/:rating
+```
