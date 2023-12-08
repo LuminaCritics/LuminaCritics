@@ -1,12 +1,11 @@
 import Carousel from "../components/carousel";
 import ContainerOfMovies from "../components/containerOfMovies";
 import { useEffect, useState } from "react";
-import Axios from "axios";
 import DefaultLayout from "../layouts/DefaultLayout";
 import ListOfMovies from "../components/listOfMovies";
-
+import MontarAxiosAPI from "../utils/axios";
 export default function Home () {
-
+    const Axios = MontarAxiosAPI()
     const [carousel, setCarousel] = useState ([]);
     const [container , setContainer] = useState ([]);
     const [firstList , setFirstList] = useState ([]);
@@ -15,32 +14,32 @@ export default function Home () {
     const [fourtyList , setFourtyList] = useState ([]);
 
     useEffect (()=> {
-        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/trending")
+        Axios.get("/filmes/trending")
         .then ((response) => {
             setCarousel (response.data);
         });
 
-        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/popular")
+        Axios.get("/filmes/popular")
         .then ((response) => {
             setContainer (response.data);
         });
 
-        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/aventura")
+        Axios.get("/filmes/buscar/aventura")
         .then ((response) => {
             setFirstList (response.data);
         });
 
-        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/dragon")
+        Axios.get("/filmes/buscar/dragon")
         .then ((response) => {
             setSecondList (response.data);
         });
 
-        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/espaco")
+        Axios.get("/filmes/buscar/espaco")
         .then ((response) => {
             setThirdList (response.data);
         });
 
-        Axios.get("https://backend-31dy.onrender.com/luminacritics/filmes/buscar/espiao")
+        Axios.get("/filmes/buscar/espiao")
         .then ((response) => {
             setFourtyList (response.data);
         });

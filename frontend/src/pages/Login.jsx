@@ -1,15 +1,14 @@
 import FormCard from "../components/formComponents/FormCard";
 import InputForm from "../components/formComponents/InputForm";
-import Axios from "axios";
 import * as Yup from "yup";
 import swal from 'sweetalert';
 import StardewBackground from "../components/StardewBackground";
 import {Link, Navigate} from "react-router-dom";
 import Cookies from "js-cookie";
-
+import MontarAxiosAPI from '../utils/axios';
 export default function Login () {
 
-
+    const Axios = MontarAxiosAPI()
     async function Login (event) {
         event.preventDefault ();
 
@@ -24,7 +23,7 @@ export default function Login () {
           });
 
         validation.validate (data).then (()=>{
-            Axios.post ("https://backend-31dy.onrender.com/luminacritics/users/login", data)
+            Axios.post ("/users/login", data)
             .then((response)=>{
                 swal({
                     title: "Sucesso!",

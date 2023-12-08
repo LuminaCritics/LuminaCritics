@@ -1,0 +1,1 @@
+export const URL_BASE = 'https://backend-31dy.onrender.com/luminacritics'

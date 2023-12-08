@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import DefaultLayout from "../layouts/DefaultLayout";
-import Axios from "axios";
-
+import MontarAxiosAPI from "../utils/axios";
 export default function SearchMovies () {
 
     const [movie, setMovie] = useState ([]);
-
+    const Axios = MontarAxiosAPI()
     useEffect (() => {
         var url = window.location.href;
         var urlObj = new URL(url);
         var id = urlObj.searchParams.get("id");
 
-        Axios.get (`https://backend-31dy.onrender.com/luminacritics/filmes/buscar/${id}`)
+        Axios.get (`/filmes/buscar/${id}`)
         .then ((response) => {
             setMovie (response.data);
             document.getElementById ("load").style.display="none";
