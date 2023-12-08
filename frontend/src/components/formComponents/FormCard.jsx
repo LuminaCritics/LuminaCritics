@@ -1,6 +1,6 @@
 export default function FormCard({title, description, href, hrefText, hrefTwo, hrefTwoText, submitValue, children}) {
     return (
-        <div className="hero min-h-screen absolute z-50">
+        <div className="hero min-h-screen z-50">
 	<div className="hero-content flex-col lg:flex-row-reverse">
 	  <div className="text-center lg:text-left">
 			<h1 className="text-5xl font-bold"> {title} </h1>

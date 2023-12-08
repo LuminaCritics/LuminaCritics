@@ -2,7 +2,8 @@ import FormCard from "../components/formComponents/formCard";
 import InputForm from "../components/formComponents/InputForm";
 import Axios from "axios";
 import * as Yup from "yup";
-import Cookies from "js-cookie";
+import swal from 'sweetalert';
+import StardewBackground from "../components/StardewBackground";
 
 export default function SignUp () {
 
@@ -23,22 +24,41 @@ export default function SignUp () {
 
         validation.validate (data).then (()=>{
             Axios.post ("http://localhost:5000/luminacritics/users/create", data)
-            .then((response)=>{
-                Cookies.set ("userToken" , JSON.stringify (response.data), {expires : 1});
-                window.location = "/login";
+            .then(()=>{
+                swal({
+                    title: "Sucesso!",
+                    text: "Aproveite a viagem!",
+                    icon: "success",
+                    button: "Ok!",
+                  })
+                  .then(()=>{
+                    window.location = "/login";
+                  });
             })
             .catch(()=>{
-                console.log ("erro");
+                swal({
+                    title: "Erro!",
+                    text: "Usuário ou senha incorretos!",
+                    icon: "error",
+                    button: "Ok!",
+                  });
             })
         })
         .catch (()=>{
-            console.log ("erro");
+            swal({
+                title: "Erro!",
+                text: "Credenciais inválidas!",
+                icon: "error",
+                button: "Ok!",
+              });
         });
 
     }
 
     return (
-        <form method = "POST" onSubmit={SignUp}>
+        <div>
+            <StardewBackground />
+            <form method = "POST" onSubmit={SignUp}>
         <FormCard title = "Cadastro" description = "Abordo desta nave você irá descobrir novas galáxias de filmes !" submitValue="Cadastrar" 
         href = "/login" hrefText = "Login" hrefTwo="#" hrefTwoText= "Recuperar Senha">
             <InputForm title = "Nome" type = "text" id = "name"/>
@@ -46,5 +66,6 @@ export default function SignUp () {
             <InputForm title = "Senha" type = "password" id = "password"/>
         </FormCard>
         </form>
+        </div>
     );
 }
